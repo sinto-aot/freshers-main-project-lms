@@ -1,22 +1,38 @@
 import { useState } from "react";
 import "./App.css";
-import AllBooks from "./components/AllBooks";
+
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import AllBooks from "./components/All-books/AllBooks";
+import IssuedBooks from "./components/Issued-books/IssuedBooks";
 import LoginForm from "./components/LoginForm";
-import Student from "./components/Student";
+import Student from "./components/Students/Student";
 
 function App() {
-  const [auth, setAuth] = useState(false)
-  
+  const [auth, setAuth] = useState(false);
+
   const loginCheck = () => {
-    setAuth(true)
-  }
+    setAuth(true);
+  };
 
   return (
     <div className="">
-      
       {/* {!auth ? (<LoginForm loginCheck={loginCheck} />):(<Student/>)} */}
-      <Student/>
-      {/* <AllBooks/> */}
+      {/* <Student/> */}
+      {/* <AllBooks /> */}
+      {/* <IssuedBooks/> */}
+      <Router>
+        <Routes>
+          <Route
+            path="/"
+            exact
+            element={
+              !auth ? <LoginForm loginCheck={loginCheck} /> : <IssuedBooks />
+            }
+          />
+          <Route path="/allbooks" element={<AllBooks />} />
+          <Route path="/students" element={<Student />} />
+        </Routes>
+      </Router>
     </div>
   );
 }

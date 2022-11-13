@@ -1,52 +1,51 @@
-*{
+* {
   margin: 0;
   box-sizing: border-box;
   padding: 0;
 }
 
-body{
-  font-family: 'Lato';
+body {
+  font-family: "Lato";
   padding: 0;
-  
 }
-.login-form, .login-btn{
+.login-form,
+.login-btn {
   width: 406px;
 }
 
-.login-btn{
-  background-color: #ED7966;
-  
+.login-btn {
+  background-color: #ed7966;
 }
 
-.login-head{
-  font-family: 'Lato';
+.login-head {
+  font-family: "Lato";
   font-weight: 700;
   font-size: 24px;
   line-height: 29px;
-  color: #09174A;
+  color: #09174a;
 }
 
-.login-txt{
+.login-txt {
   font-weight: 500;
   font-size: 16px;
   line-height: 19px;
   color: #646464;
-  }
+}
 
-.login-container{
+.login-container {
   margin-top: 5rem;
 }
 
-.lms-txt{
-  font-family: 'Lato';
+.lms-txt {
+  font-family: "Lato";
   font-style: normal;
   font-weight: 800;
   font-size: 24px;
   line-height: 29px;
-  color: #ED7966;
+  color: #ed7966;
 }
-.lms-txt-white{
-  font-family: 'Lato';
+.lms-txt-white {
+  font-family: "Lato";
   font-style: normal;
   font-weight: 800;
   font-size: 24px;
@@ -54,43 +53,46 @@ body{
   color: #fff;
 }
 
-
-.nav-container{
+.nav-container {
   width: 15.875rem;
   height: 100vh;
-  background-color: #ED7966;
+  background-color: #ed7966;
 }
 
-.add-student-btn{
-  background-color: #ED7966;
+.add-student-btn {
+  background-color: #ed7966;
   /* border: none;
   width: 9.063rem; */
 }
 
-.nav-brand{
+.nav-brand {
   font-weight: 600;
   font-size: 20px;
   line-height: 24px;
-  color: #09174A;
+  color: #09174a;
 }
 
-.list-header{
+.list-header {
   font-weight: 500;
   font-size: 16px;
   line-height: 20px;
   color: #646464;
 }
 
-.modal-header{
+.modal-header {
   font-weight: 600;
   font-size: 20px;
   line-height: 24px;
-  color: #09174A;
+  color: #09174a;
 }
 
-.modal-label{
+.modal-label {
   font-weight: 500px;
   font-size: 16px;
   line-height: 19px;
-  color: #09174A;
+  color: #09174a;
 }
+
+/* .side-btn :hover{
+  background-color: azure;
+} */
