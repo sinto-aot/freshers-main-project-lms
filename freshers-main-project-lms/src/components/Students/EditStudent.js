@@ -3,12 +3,12 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 
-function AddStudent({ showAddModal, setShowAddModal, handleAddClose, handleShow }) {
+function AddStudent({ showEditModal, setShowEditModal, handleEditClose, handleShow }) {
   return (
     <>
-      <Modal show={showAddModal} onHide={handleAddClose}>
+      <Modal show={showEditModal} onHide={handleEditClose}>
         <Modal.Header closeButton>
-          <Modal.Title className="modal-header">Add Student</Modal.Title>
+          <Modal.Title className="modal-header">Edit Student</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form>
@@ -35,15 +35,15 @@ function AddStudent({ showAddModal, setShowAddModal, handleAddClose, handleShow 
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="" className="border" onClick={handleAddClose}>
+          <Button variant="" className="border" onClick={handleEditClose}>
             Close
           </Button>
           <Button
             variant=""
             className="add-student-btn text-white"
-            onClick={handleAddClose}
+            onClick={handleEditClose}
           >
-            Add Student
+            Update
           </Button>
         </Modal.Footer>
       </Modal>

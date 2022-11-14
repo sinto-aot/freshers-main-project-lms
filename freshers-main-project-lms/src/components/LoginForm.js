@@ -53,7 +53,7 @@ function LoginForm({loginCheck}) {
               </a>
             </li>
           </ul>
-          <Form.Group className="mb-3" controlId="formBasicEmail">
+          <Form.Group className="mb-3 mt-3" controlId="formBasicEmail">
             <Form.Label>Email</Form.Label>
             <Form.Control
               type="email"

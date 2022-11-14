@@ -3,16 +3,28 @@ import Navbar from "../Navbar";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import AddStudent from "./AddStudent";
+import EditStudent from "./EditStudent";
+import DeleteStudent from "./DeleteStudent";
 import { useState } from "react";
+import { Link } from "react-router-dom";
+
 
 function Student() {
-  const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const [showAddModal, setShowAddModal] = useState(false);
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+
+  const handleAddShow = () => setShowAddModal(true);
+  const handleAddClose = () => setShowAddModal(false);
+
+  const handleEditShow = () => setShowEditModal(true);
+  const handleEditClose = () => setShowEditModal(false);
+
+  const handleDeleteClose = () => setShowDeleteModal(false);
+  const handleDeleteShow = () => setShowDeleteModal(true);
 
   const [studentData, setStudentData] = useState([
     { key: 1, name: "Nitha Samuel", email: "nithasamuel@gmail.com" },
-    { key: 2, name: "Anjali Thomas", email: "anjali.t@hotmail.com" },
     { key: 2, name: "Anjali Thomas", email: "anjali.t@hotmail.com" },
   ]);
 
@@ -43,59 +55,30 @@ function Student() {
               variant=""
               className="add-student-btn text-white px-5 mx-4"
               type="submit"
-              onClick={handleShow}
+              onClick={handleAddShow}
             >
               Add New Student
             </Button>
           </div>
         </div>
         <AddStudent
-          show={show}
-          setShow={setShow}
-          handleClose={handleClose}
-          handleShow={handleShow}
+          showAddModal={showAddModal}
+          setShowAddModal={setShowAddModal}
+          handleAddClose={handleAddClose}
+          handleAddShow={handleAddShow}
         />
-
-        {/* <div className="student-table mt-3">
-        <table class="table table-borderless d-flex justify-content-between flex-column ">
-  <thead className='  border-bottom '>
-    <tr className='border-bottom'>
-      <th scope="col ">Name</th>
-      <th scope="col">Email</th>
-      <th scope="col">Actions</th>
-    </tr>
-  </thead>
-  <tbody >
-    <tr className='border-bottom my-3 '>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-    </tr>
- 
-  </tbody>
-</table>
-      </div> */}
-
-        {/* <div className="d-flex justify-content-around student-list border-bottom  mt-5 mx-4">
-          <p className="list-header">Name</p>
-          <p className="list-header">Email</p>
-          <p className="list-header">Actions</p>
-        </div>
-        <div className="d-flex justify-content-around student-list border-bottom  mt-4 mx-4">
-          <p>Nitha Samuel</p>
-          <p>nithasamuel@gmail.com</p>
-          <div className="d-flex justify-content-around actions ">
-            <div>
-              <img src="/img/edit-icon.png" alt="" className="" />
-            </div>
-            <div>
-              <img src="/img/delete-icon.png" alt="" className="mx-1" />
-            </div>
-            <div>
-              <img src="/img/view-icon.png" alt="" />
-            </div>
-          </div>
-        </div> */}
+        <EditStudent
+          showEditModal={showEditModal}
+          setShowEditModal={setShowEditModal}
+          handleEditClose={handleEditClose}
+          handleEditShow={handleEditShow}
+        />
+        {/* <DeleteStudent
+          showDeleteModal={showDeleteModal}
+          setShowDeleteModal={setShowDeleteModal}
+          handleDeleteClose={handleDeleteClose}
+          hendleDeleteShow={handleDeleteShow}
+        /> */}
         <div
           className="student-content mx-4 px-3"
           style={{ backgroundColor: "#FFF" }}
@@ -117,18 +100,21 @@ function Student() {
                   <div class="col ">
                     <div className="d-flex  actions">
                       <div>
-                        <img src="/img/edit-icon.png" alt="" className="" />
+                        <img src="/img/edit-icon.png" alt="" className="" onClick={handleEditShow} />
                       </div>
                       <div>
                         <img
                           src="/img/delete-icon.png"
                           alt=""
                           className="mx-1"
+                          onClick={handleDeleteShow}
                         />
                       </div>
+                      <Link to="/view-student">
                       <div>
                         <img src="/img/view-icon.png" alt="" />
-                      </div>
+                        </div>
+                        </Link>
                     </div>
                   </div>
                 </div>

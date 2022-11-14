@@ -15,35 +15,31 @@ function Navbar() {
         </div>
       </Nav>
 
-      <div className="btn-group d-flex flex-column justify-content-between mt-4 py-3">
-        <Button
-          variant=""
-          className=" side-btn text-white d-flex justify-content-evenly"
+      <div className="btn-group d-flex flex-column justify-content-between mt-4 py-4">
+        <Link to="/issuedbooks" className="text-decoration-none text-white side-btn">
+          <button className="btn side-btn  text-white d-flex justify-content-evenly  my-2">
+            <img src="/img/issued-books-logo.png" alt="" className="pt-1" />
+            Issued Books
+          </button>
+        </Link>
+        <Link
+          to="/allbooks"
+          className="text-decoration-none text-white side-btn"
         >
-          <img src="/img/issued-books-logo.png" alt="" className="pt-1" />
-          <Link to="/" className="text-decoration-none text-white">
-            <p className="pe-4  ">Issued Books</p>
-          </Link>
-        </Button>
-
-        <Button
-          variant=""
-          className=" side-btn text-white d-flex justify-content-evenly"
+          <button className="btn side-btn  text-white d-flex justify-content-evenly  my-2">
+            <img src="/img/all-books-logo.png" alt="" className="pt-1 " />
+            All Books
+          </button>
+        </Link>
+        <Link
+          to="/students"
+          className="text-decoration-none text-white side-btn"
         >
-          <img src="/img/all-books-logo.png" alt="" className="pt-1 " />
-          <Link to="/allbooks" className="text-decoration-none text-white">
-            <p className="pe-5 ">All Books</p>
-          </Link>
-        </Button>
-        <Button
-          variant=""
-          className=" side-btn text-white d-flex justify-content-evenly"
-        >
-          <img src="/img/students-logo.png" alt="" className="pt-1" />
-          <Link to="/students" className="text-decoration-none text-white">
-            <p className="pe-5">Students</p>
-          </Link>
-        </Button>
+          <button className="btn side-btn  text-white d-flex justify-content-evenly  my-2">
+            <img src="/img/students-logo.png" alt="" className="pt-1 " />
+            Students
+          </button>
+        </Link>
       </div>
     </div>
   );

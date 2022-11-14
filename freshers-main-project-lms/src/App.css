@@ -93,6 +93,19 @@ body {
   color: #09174a;
 }
 
-/* .side-btn :hover{
-  background-color: azure;
+.side-btn{
+  background-color: #ed7966;
+  border: none;
+  outline: none;
+  box-shadow: none !important;
+  width: 14rem;
+  height: 2.75rem;
+}
+.side-btn :hover{
+  background-color: #ef8979 !important;
+}
+
+/* .side-btn-primary{
+  background-color: none;
+  border-color: none;
 } */
