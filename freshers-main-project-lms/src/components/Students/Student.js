@@ -12,13 +12,17 @@ function Student() {
 
   const [studentData, setStudentData] = useState([
     { key: 1, name: "Nitha Samuel", email: "nithasamuel@gmail.com" },
-    {key:2,name:"Anjali Thomas",email:"anjali.t@hotmail.com"}
-  ])
+    { key: 2, name: "Anjali Thomas", email: "anjali.t@hotmail.com" },
+    { key: 2, name: "Anjali Thomas", email: "anjali.t@hotmail.com" },
+  ]);
 
   return (
     <div className="d-flex ">
       <Navbar />
-      <div className="container student-container" style={{ width: "100%" }}>
+      <div
+        className="container student-container"
+        style={{ width: "100%", backgroundColor: "#F5F5F5" }}
+      >
         <nav className="navbar border-bottom mx-4">
           <div className="container-fluid">
             <span className="navbar-brand nav-brand mb-0 h1 mt-3 ">
@@ -92,37 +96,46 @@ function Student() {
             </div>
           </div>
         </div> */}
-
-        <div className="  student-list border-bottom list-header  mt-5 py-4 mx-4">
-          <div className="row">
-            <div className="col">Name</div>
-            <div className="col">Email</div>
-            <div className="col">Actions</div>
-          </div>
-        </div>
-
-       { studentData.map((item) =>{
-          return(
-        <div class="border-bottom   py-4 mx-4"  key={item.key}>
-          <div class="row">
-                <div class="col">{item.name}</div>
-                <div class="col">{item.email}</div>
-            <div class="col ">
-              <div className="d-flex  actions">
-                <div>
-                  <img src="/img/edit-icon.png" alt="" className="" />
-                </div>
-                <div>
-                  <img src="/img/delete-icon.png" alt="" className="mx-1" />
-                </div>
-                <div>
-                  <img src="/img/view-icon.png" alt="" />
-                </div>
-              </div>
+        <div
+          className="student-content mx-4 px-3"
+          style={{ backgroundColor: "#FFF" }}
+        >
+          <div className="  student-list border-bottom list-header  mt-5 py-4 ">
+            <div className="row">
+              <div className="col">Name</div>
+              <div className="col">Email</div>
+              <div className="col">Actions</div>
             </div>
           </div>
-        </div>)
-            })}
+
+          {studentData.map((item) => {
+            return (
+              <div class="border-bottom   py-4 " key={item.key}>
+                <div class="row">
+                  <div class="col">{item.name}</div>
+                  <div class="col">{item.email}</div>
+                  <div class="col ">
+                    <div className="d-flex  actions">
+                      <div>
+                        <img src="/img/edit-icon.png" alt="" className="" />
+                      </div>
+                      <div>
+                        <img
+                          src="/img/delete-icon.png"
+                          alt=""
+                          className="mx-1"
+                        />
+                      </div>
+                      <div>
+                        <img src="/img/view-icon.png" alt="" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
       </div>
     </div>
   );

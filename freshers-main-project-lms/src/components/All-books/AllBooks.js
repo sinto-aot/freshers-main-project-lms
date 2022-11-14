@@ -13,7 +13,8 @@ function AllBooks() {
   return (
     <div className="d-flex ">
       <Navbar />
-      <div className="container student-container" style={{ width: "100%" }}>
+      
+      <div className="container all-books-container" style={{ width: "100%" , backgroundColor: "#F5F5F5"}}>
         <nav className="navbar border-bottom mx-4">
           <div className="container-fluid">
             <span className="navbar-brand nav-brand mb-0 h1 mt-3 ">
@@ -93,7 +94,10 @@ function AllBooks() {
             
           </div>
         </div> */}
-
+           <div
+          className="student-content mx-4 px-3"
+          style={{ backgroundColor: "#FFF" }}
+        >
         <div className="  student-list border-bottom list-header  mt-5 py-4 mx-4">
           <div className="row">
             <div className="col">Book</div>
@@ -119,12 +123,13 @@ function AllBooks() {
                   <img src="/img/edit-icon.png" alt="" className="" />
                 </div>
                 <div className="">
-                  <img src="/img/delete-icon.png" alt="" className="mx-1" />
+                <img src="/img/delete-icon.png" alt="" className="mx-1" />
                 </div>
               </div>
             </div>
           </div>
-        </div>
+          </div>
+          </div>
       </div>
     </div>
   );
