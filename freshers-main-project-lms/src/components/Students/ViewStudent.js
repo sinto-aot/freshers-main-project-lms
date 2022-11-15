@@ -1,8 +1,9 @@
 import React from "react";
 import Navbar from "../Navbar";
-import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { useState } from "react";
+import { IoIosArrowBack } from "react-icons/io";
+import { Link } from "react-router-dom";
 
 function ViewStudent() {
   const [studentData, setStudentData] = useState([
@@ -36,30 +37,34 @@ function ViewStudent() {
         <nav className="navbar border-bottom mx-4">
           <div className="container-fluid">
             <span className="navbar-brand mb-0 h1 mt-3 ">
+              <Link to="/students " className="text-dark">
+                <IoIosArrowBack />
+              </Link>{" "}
               Students / Nitha Samuel
             </span>
           </div>
-              </nav>
-              
-              <div className="student-details d-flex justify-content-between mx-4 mt-3 px-3" style={{ backgroundColor: "#FFF"}}> 
-                  <div className="student-title">
-                      <p>Nitha Samuel</p>
-                      <p>nithasamuel@gmail.com</p>
-                  </div>
-                  <div className="student-book-details border-start ps-3">
-                      <p>Total Books issued   5 </p>
-                      <p>Returned Books  4 </p>
-                      <p>Total Fine  Rs. 70</p>
-                  </div>
-              </div>
+        </nav>
+
+        <div
+          className="student-details d-flex justify-content-between mx-4 mt-3 px-3"
+          style={{ backgroundColor: "#FFF" }}
+        >
+          <div className="student-title">
+            <p>Nitha Samuel</p>
+            <p>nithasamuel@gmail.com</p>
+          </div>
+          <div className="student-book-details border-start ps-3">
+            <p>Total Books issued 5 </p>
+            <p>Returned Books 4 </p>
+            <p>Total Fine Rs. 70</p>
+          </div>
+        </div>
 
         <div
           className="student-content mx-4 px-3 mt-3"
           style={{ backgroundColor: "#FFF" }}
-              >
-                  <div className="issued-count pt-3">
-                      Issued Books (5)
-                  </div>
+        >
+          <div className="issued-count pt-3">Issued Books (5)</div>
           <div className="col-12 d-flex justify-content-between mt-2">
             <div className="search col-5">
               <Form.Control

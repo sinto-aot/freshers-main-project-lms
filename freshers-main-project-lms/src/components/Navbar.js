@@ -15,8 +15,11 @@ function Navbar() {
         </div>
       </Nav>
 
-      <div className="btn-group d-flex flex-column justify-content-between mt-4 py-4">
-        <Link to="/issuedbooks" className="text-decoration-none text-white side-btn">
+      <div className="btn-group d-flex flex-column justify-content-between mt-4 py-4 px-3">
+        <Link
+          to="/issuedbooks"
+          className="text-decoration-none text-white side-btn px-3 my-2"
+        >
           <button className="btn side-btn  text-white d-flex justify-content-evenly  my-2">
             <img src="/img/issued-books-logo.png" alt="" className="pt-1" />
             Issued Books
@@ -24,7 +27,7 @@ function Navbar() {
         </Link>
         <Link
           to="/allbooks"
-          className="text-decoration-none text-white side-btn"
+          className="text-decoration-none text-white side-btn px-3 my-2"
         >
           <button className="btn side-btn  text-white d-flex justify-content-evenly  my-2">
             <img src="/img/all-books-logo.png" alt="" className="pt-1 " />
@@ -33,7 +36,7 @@ function Navbar() {
         </Link>
         <Link
           to="/students"
-          className="text-decoration-none text-white side-btn"
+          className="text-decoration-none text-white side-btn px-3 my-2"
         >
           <button className="btn side-btn  text-white d-flex justify-content-evenly  my-2">
             <img src="/img/students-logo.png" alt="" className="pt-1 " />

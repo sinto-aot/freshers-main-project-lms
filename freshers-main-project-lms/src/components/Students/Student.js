@@ -1,13 +1,12 @@
-import React from "react";
+import React, { useState,createContext, useContext } from "react";
 import Navbar from "../Navbar";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import AddStudent from "./AddStudent";
 import EditStudent from "./EditStudent";
 import DeleteStudent from "./DeleteStudent";
-import { useState } from "react";
 import { Link } from "react-router-dom";
-
+import { studentContext } from "../../App";
 
 function Student() {
   const [showAddModal, setShowAddModal] = useState(false);
@@ -23,10 +22,16 @@ function Student() {
   const handleDeleteClose = () => setShowDeleteModal(false);
   const handleDeleteShow = () => setShowDeleteModal(true);
 
-  const [studentData, setStudentData] = useState([
-    { key: 1, name: "Nitha Samuel", email: "nithasamuel@gmail.com" },
-    { key: 2, name: "Anjali Thomas", email: "anjali.t@hotmail.com" },
-  ]);
+  const [studentData, setStudentData] = useContext(studentContext);
+    // { key: 1, name: "Nitha Samuel", email: "nithasamuel@gmail.com" },
+    // { key: 2, name: "Anjali Thomas", email: "anjali.t@hotmail.com" },
+  
+
+  // const addStudent = (key,name, email, password) => {
+  //     setStudentData(key,name,email,password)
+  //   }
+
+
 
   return (
     <div className="d-flex ">
@@ -66,6 +71,8 @@ function Student() {
           setShowAddModal={setShowAddModal}
           handleAddClose={handleAddClose}
           handleAddShow={handleAddShow}
+          studentData={studentData}
+          setStudentData={setStudentData}
         />
         <EditStudent
           showEditModal={showEditModal}
@@ -100,7 +107,12 @@ function Student() {
                   <div class="col ">
                     <div className="d-flex  actions">
                       <div>
-                        <img src="/img/edit-icon.png" alt="" className="" onClick={handleEditShow} />
+                        <img
+                          src="/img/edit-icon.png"
+                          alt=""
+                          className=""
+                          onClick={handleEditShow}
+                        />
                       </div>
                       <div>
                         <img
@@ -111,10 +123,10 @@ function Student() {
                         />
                       </div>
                       <Link to="/view-student">
-                      <div>
-                        <img src="/img/view-icon.png" alt="" />
+                        <div>
+                          <img src="/img/view-icon.png" alt="" />
                         </div>
-                        </Link>
+                      </Link>
                     </div>
                   </div>
                 </div>

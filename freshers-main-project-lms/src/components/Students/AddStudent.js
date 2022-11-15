@@ -3,7 +3,28 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 
-function AddStudent({ showAddModal, setShowAddModal, handleAddClose, handleShow }) {
+function AddStudent({ showAddModal, setShowAddModal, handleAddClose, handleShow,studentData, setStudentData }) {
+    
+  const [studentInput, setStudentInput] = useState({
+    name:"" ,email:"",password:"",cpassword:""
+  })
+
+ 
+  const handleInput = (e) => {
+    
+    let  name = e.target.name;
+    let  value = e.target.value;
+
+    setStudentInput({ ...studentInput, [name]: value });
+    // console.log(studentInput)
+
+   
+
+  }
+  const handleAddStudent=()=>{
+    setStudentData([...studentData,{name:studentInput.name,email:studentInput.email,password:studentInput.password,cpassword:studentInput.cpassword}])
+  }
+
   return (
     <>
       <Modal show={showAddModal} onHide={handleAddClose}>
@@ -14,23 +35,44 @@ function AddStudent({ showAddModal, setShowAddModal, handleAddClose, handleShow 
           <Form>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label className="modal-label">Name</Form.Label>
-              <Form.Control type="text" placeholder="Eg: John Doe" autoFocus />
+              <Form.Control
+                type="text"
+                name="name"
+                value={studentInput.name}
+                onChange={handleInput}
+                placeholder="Eg: John Doe"
+                autoFocus />
             </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label className="modal-label">Email</Form.Label>
               <Form.Control
-                type="text"
+                type="email"
+                name="email"
+                value={studentInput.email}
+                onChange={handleInput}
                 placeholder="Eg: johndoe@gmail.com"
-                autoFocus
+                
               />
             </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label className="modal-label">Password</Form.Label>
-              <Form.Control type="password" placeholder="********" autoFocus />
+              <Form.Control
+                type="password"
+                name="password"
+                value={studentInput.password}
+                onChange={handleInput}
+                placeholder="********"
+                 />
             </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label className="modal-label">Confirm Password</Form.Label>
-              <Form.Control type="password" placeholder="********" autoFocus />
+              <Form.Control
+                type="password"
+                name="cpassword"
+                value={studentInput.cpassword}
+                onChange={handleInput}
+                placeholder="********"
+                 />
             </Form.Group>
           </Form>
         </Modal.Body>
@@ -41,9 +83,13 @@ function AddStudent({ showAddModal, setShowAddModal, handleAddClose, handleShow 
           <Button
             variant=""
             className="add-student-btn text-white"
-            onClick={handleAddClose}
+            onClick={() => {
+              handleAddClose();
+              handleAddStudent();
+            }}
+
           >
-            Add Student
+            Add Student                                               
           </Button>
         </Modal.Footer>
       </Modal>

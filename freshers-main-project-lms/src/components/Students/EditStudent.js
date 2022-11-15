@@ -19,7 +19,7 @@ function AddStudent({ showEditModal, setShowEditModal, handleEditClose, handleSh
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label className="modal-label">Email</Form.Label>
               <Form.Control
-                type="text"
+                type="email"
                 placeholder="Eg: johndoe@gmail.com"
                 autoFocus
               />
