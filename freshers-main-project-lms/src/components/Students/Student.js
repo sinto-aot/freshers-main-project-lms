@@ -26,9 +26,7 @@ function Student() {
 
   const [studentData, setStudentData] = useContext(studentContext);
 
-  // const deleteStudent = (id) => {
-  //   setStudentData(studentData.filter((item) => id! = item.key))
-  // }
+  
   const deleteStudent = (id) => {
     console.log(id);
     setStudentData(studentData.filter((item) => id !== item.key));

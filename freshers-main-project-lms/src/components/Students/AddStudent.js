@@ -21,8 +21,14 @@ function AddStudent({ showAddModal, setShowAddModal, handleAddClose, handleShow,
    
 
   }
-  const handleAddStudent=()=>{
-    setStudentData([...studentData,{key:shortid.generate(),name:studentInput.name,email:studentInput.email,password:studentInput.password,cpassword:studentInput.cpassword}])
+  const handleAddStudent= () =>{
+    setStudentData([...studentData, {
+      key: shortid.generate(),
+      name: studentInput.name,
+      email: studentInput.email,
+      password: studentInput.password,
+      cpassword: studentInput.cpassword
+    }])
   }
 
   return (

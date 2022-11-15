@@ -1,15 +1,24 @@
-import React from "react";
 import Navbar from "../Navbar";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import AddBook from "./AddBook";
 import { useState, useContext } from "react";
-import { studentContext } from "../../App";
+import { bookContext } from "../../App";
+
 
 function AllBooks() {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+
+  // const [bookData, setBookData] = useContext(bookContext);
+  const [bookData, setBookData] = useContext(bookContext);
+
+  const deleteBook = (id) => {
+    console.log(id)
+    setBookData(bookData.filter((item) => id !== item.key))
+  };
 
   return (
     <div className="d-flex ">
@@ -46,6 +55,8 @@ function AllBooks() {
           setShow={setShow}
           handleClose={handleClose}
           handleShow={handleShow}
+          bookData={bookData}
+          setBookData={setBookData}
         />
 
         
@@ -63,14 +74,15 @@ function AllBooks() {
             <div className="col">Actions</div>
           </div>
         </div>
-
-        <div class="   border-bottom   py-4 mx-4">
+          {bookData.map((item) => {
+            return (
+              <div class="   border-bottom   py-4 mx-4" key={item.key}>
           <div class="row">
-            <div class="col">It Start With Us</div>
-            <div class="col">Colleen Hoover</div>
-            <div class="col">English</div>
-            <div class="col">5</div>
-            <div class="col">2</div>
+                  <div class="col">{item.bookTitle}</div>
+                  <div class="col">{item.author}</div>
+            <div class="col">{item.language}</div>
+            <div class="col">{item.totalCopies}</div>
+            <div class="col">{item.remaining}</div>
 
             <div class="col ">
               <div className="d-flex  actions px-2">
@@ -78,12 +90,16 @@ function AllBooks() {
                   <img src="/img/edit-icon.png" alt="" className="" />
                 </div>
                 <div className="">
-                <img src="/img/delete-icon.png" alt="" className="mx-1" />
+                <img src="/img/delete-icon.png" alt="" className="mx-1" onClick={() =>{deleteBook(item.key)}} />
                 </div>
               </div>
             </div>
           </div>
           </div>
+            )
+          }
+          )}
+        
           </div>
       </div>
     </div>

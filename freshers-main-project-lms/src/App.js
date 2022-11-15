@@ -8,11 +8,11 @@ import Student from "./components/Students/Student";
 import ViewStudent from "./components/Students/ViewStudent";
 
 const studentContext = createContext();
-const allBooksContext = createContext();
+const bookContext = createContext();
 
 function App() {
   const [studentData, setStudentData] = useState([]);
-  const [allBooksData, setAllBooksData] = useState([]);
+  const [bookData, setBookData] = useState([]);
 
 
   const [auth, setAuth] = useState(false);
@@ -22,7 +22,8 @@ function App() {
 
   return (
     <div className="">
-      <studentContext.Provider value={[studentData,setStudentData,allBooksData,setAllBooksData]}>
+      <bookContext.Provider value={[bookData,setBookData]}>
+      <studentContext.Provider value={[studentData,setStudentData]}>
         <Router>
           <Routes>
             <Route
@@ -38,10 +39,12 @@ function App() {
             <Route path="/view-student" element={<ViewStudent />} />
           </Routes>
         </Router>
-      </studentContext.Provider>
+        </studentContext.Provider>
+        </bookContext.Provider>
     </div>
   );
 }
 
 export default App;
-export {studentContext}
+export { studentContext }
+export {bookContext}
