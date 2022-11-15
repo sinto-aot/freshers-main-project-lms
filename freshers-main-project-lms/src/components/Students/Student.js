@@ -1,4 +1,4 @@
-import React, { useState,createContext, useContext } from "react";
+import React, { useState, createContext, useContext } from "react";
 import Navbar from "../Navbar";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
@@ -7,6 +7,7 @@ import EditStudent from "./EditStudent";
 import DeleteStudent from "./DeleteStudent";
 import { Link } from "react-router-dom";
 import { studentContext } from "../../App";
+import shortid from "shortid";
 
 function Student() {
   const [showAddModal, setShowAddModal] = useState(false);
@@ -19,19 +20,19 @@ function Student() {
   const handleEditShow = () => setShowEditModal(true);
   const handleEditClose = () => setShowEditModal(false);
 
-  const handleDeleteClose = () => setShowDeleteModal(false);
   const handleDeleteShow = () => setShowDeleteModal(true);
+  const handleDeleteClose = () => setShowDeleteModal(false);
+
 
   const [studentData, setStudentData] = useContext(studentContext);
-    // { key: 1, name: "Nitha Samuel", email: "nithasamuel@gmail.com" },
-    // { key: 2, name: "Anjali Thomas", email: "anjali.t@hotmail.com" },
-  
 
-  // const addStudent = (key,name, email, password) => {
-  //     setStudentData(key,name,email,password)
-  //   }
-
-
+  // const deleteStudent = (id) => {
+  //   setStudentData(studentData.filter((item) => id! = item.key))
+  // }
+  const deleteStudent = (id) => {
+    console.log(id);
+    setStudentData(studentData.filter((item) => id !== item.key));
+  };
 
   return (
     <div className="d-flex ">
@@ -84,7 +85,7 @@ function Student() {
           showDeleteModal={showDeleteModal}
           setShowDeleteModal={setShowDeleteModal}
           handleDeleteClose={handleDeleteClose}
-          hendleDeleteShow={handleDeleteShow}
+          handleDeleteShow ={handleDeleteShow}
         /> */}
         <div
           className="student-content mx-4 px-3"
@@ -114,12 +115,16 @@ function Student() {
                           onClick={handleEditShow}
                         />
                       </div>
-                      <div>
+                      <div  >
                         <img
                           src="/img/delete-icon.png"
                           alt=""
                           className="mx-1"
-                          onClick={handleDeleteShow}
+                          // onMouseOver={handleDeleteShow}
+                          onClick={() => {
+                            deleteStudent(item.key)
+                          }}
+                         
                         />
                       </div>
                       <Link to="/view-student">

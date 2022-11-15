@@ -8,8 +8,12 @@ import Student from "./components/Students/Student";
 import ViewStudent from "./components/Students/ViewStudent";
 
 const studentContext = createContext();
+const allBooksContext = createContext();
+
 function App() {
   const [studentData, setStudentData] = useState([]);
+  const [allBooksData, setAllBooksData] = useState([]);
+
 
   const [auth, setAuth] = useState(false);
   const loginCheck = () => {
@@ -18,7 +22,7 @@ function App() {
 
   return (
     <div className="">
-      <studentContext.Provider value={[studentData,setStudentData]}>
+      <studentContext.Provider value={[studentData,setStudentData,allBooksData,setAllBooksData]}>
         <Router>
           <Routes>
             <Route

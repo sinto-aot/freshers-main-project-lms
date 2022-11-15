@@ -3,7 +3,7 @@ import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 
-function AddStudent({ showEditModal, setShowEditModal, handleEditClose, handleShow }) {
+function AddStudent({ showEditModal, handleEditClose,}) {
   return (
     <>
       <Modal show={showEditModal} onHide={handleEditClose}>

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
-
+import shortid from "shortid"
 function AddStudent({ showAddModal, setShowAddModal, handleAddClose, handleShow,studentData, setStudentData }) {
     
   const [studentInput, setStudentInput] = useState({
@@ -22,7 +22,7 @@ function AddStudent({ showAddModal, setShowAddModal, handleAddClose, handleShow,
 
   }
   const handleAddStudent=()=>{
-    setStudentData([...studentData,{name:studentInput.name,email:studentInput.email,password:studentInput.password,cpassword:studentInput.cpassword}])
+    setStudentData([...studentData,{key:shortid.generate(),name:studentInput.name,email:studentInput.email,password:studentInput.password,cpassword:studentInput.cpassword}])
   }
 
   return (
@@ -41,7 +41,9 @@ function AddStudent({ showAddModal, setShowAddModal, handleAddClose, handleShow,
                 value={studentInput.name}
                 onChange={handleInput}
                 placeholder="Eg: John Doe"
-                autoFocus />
+                autoFocus
+                required
+              />
             </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label className="modal-label">Email</Form.Label>
@@ -86,6 +88,7 @@ function AddStudent({ showAddModal, setShowAddModal, handleAddClose, handleShow,
             onClick={() => {
               handleAddClose();
               handleAddStudent();
+              setStudentInput("")
             }}
 
           >

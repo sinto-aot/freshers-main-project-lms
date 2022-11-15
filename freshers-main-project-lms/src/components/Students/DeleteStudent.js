@@ -9,7 +9,7 @@ function DeleteStudent(showDeleteModal,handleDeleteClose) {
     
   return (
       <div>
-    <Modal show={showDeleteModal} onHide={handleDeleteClose} animation={false}>
+    <Modal show={showDeleteModal} onHide={handleDeleteClose} >
         <Modal.Header closeButton>
           <Modal.Title>Modal heading</Modal.Title>
         </Modal.Header>

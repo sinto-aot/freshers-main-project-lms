@@ -3,7 +3,8 @@ import Navbar from "../Navbar";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import AddBook from "./AddBook";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { studentContext } from "../../App";
 
 function AllBooks() {
   const [show, setShow] = useState(false);
@@ -13,7 +14,6 @@ function AllBooks() {
   return (
     <div className="d-flex ">
       <Navbar />
-      
       <div className="container all-books-container" style={{ width: "100%" , backgroundColor: "#F5F5F5"}}>
         <nav className="navbar border-bottom mx-4">
           <div className="container-fluid">
@@ -48,52 +48,7 @@ function AllBooks() {
           handleShow={handleShow}
         />
 
-        {/* <div className="student-table mt-3">
-        <table class="table table-borderless d-flex justify-content-between flex-column ">
-  <thead className='  border-bottom '>
-    <tr className='border-bottom'>
-      <th scope="col ">Name</th>
-      <th scope="col">Email</th>
-      <th scope="col">Actions</th>
-    </tr>
-  </thead>
-  <tbody >
-    <tr className='border-bottom my-3 '>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-    </tr>
- 
-  </tbody>
-</table>
-      </div> */}
-
-        {/* <div className="d-flex justify-content-around student-list border-bottom  mt-5 mx-4">
-          <p className="list-header">Book Title</p>
-          <p className="list-header">Author</p>
-          <p className="list-header">Language</p>
-          <p className="list-header">Total Copies</p>
-          <p className="list-header">Remaining</p>
-          <p className="list-header">Actions</p>
-                  
-        </div>
-        <div className="d-flex justify-content-around student-list border-bottom  mt-4 mx-4">
-          <p>It Start With Us</p>
-          <p>Colleen Hoover</p>
-          <p>English</p>
-          <p>5</p>
-          <p>2</p>
-          
-          <div className="d-flex justify-content-around actions ">
-            <div>
-              <img src="/img/edit-icon.png" alt="" className="" />
-            </div>
-            <div>
-              <img src="/img/delete-icon.png" alt="" className="mx-1" />
-            </div>
-            
-          </div>
-        </div> */}
+        
            <div
           className="student-content mx-4 px-3"
           style={{ backgroundColor: "#FFF" }}
