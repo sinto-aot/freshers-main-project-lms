@@ -2,24 +2,24 @@ import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 
-function DeleteStudent({
+function DeleteBook({
   showDeleteModal,
   deleteModalClose,
-  studentData,
-  setStudentData,
-  getStudentKey,
+  bookData,
+  setBookData,
+  getBookKey,
 }) {
-  const deleteStudent = (id) => {
+  const deleteBook = (id) => {
     console.log(id);
-    setStudentData(studentData.filter((item) => id !== item.key));
+    setBookData(bookData.filter((item) => id !== item.key));
   };
   return (
     <>
       <Modal show={showDeleteModal} onHide={deleteModalClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Delete Student</Modal.Title>
+          <Modal.Title>Delete Book</Modal.Title>
         </Modal.Header>
-        <Modal.Body>Are you sure you want to delete the Student ?</Modal.Body>
+        <Modal.Body>Are you sure you want to delete the book ?</Modal.Body>
         <Modal.Footer>
           <Button variant="" className="border" onClick={deleteModalClose}>
             Close
@@ -29,10 +29,10 @@ function DeleteStudent({
             className="delete-btn text-white"
             onClick={() => {
               deleteModalClose();
-              deleteStudent(getStudentKey);
+              deleteBook(getBookKey);
             }}
           >
-            Delete 
+            Delete
           </Button>
         </Modal.Footer>
       </Modal>
@@ -40,4 +40,4 @@ function DeleteStudent({
   );
 }
 
-export default DeleteStudent;
+export default DeleteBook;

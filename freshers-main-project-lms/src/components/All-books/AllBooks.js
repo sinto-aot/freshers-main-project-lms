@@ -4,21 +4,29 @@ import Form from "react-bootstrap/Form";
 import AddBook from "./AddBook";
 import { useState, useContext } from "react";
 import { bookContext } from "../../App";
+import DeleteBook from "./DeleteBook";
 
 
 function AllBooks() {
+  const [bookData, setBookData] = useContext(bookContext);
+
+
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  
 
-  // const [bookData, setBookData] = useContext(bookContext);
-  const [bookData, setBookData] = useContext(bookContext);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const deleteModalClose = () => setShowDeleteModal(false);
+  const deleteModalShow = () => setShowDeleteModal(true);
 
-  const deleteBook = (id) => {
-    console.log(id)
-    setBookData(bookData.filter((item) => id !== item.key))
-  };
+
+  const [getBookKey, setGetBookKey] = useState("");
+  const bookKey = (getBookKey) => {
+    setGetBookKey(getBookKey)
+    console.log(getBookKey)
+  }
 
   return (
     <div className="d-flex ">
@@ -45,6 +53,7 @@ function AllBooks() {
               className="add-student-btn text-white px-5 mx-4"
               type="submit"
               onClick={handleShow}
+             
             >
               Add New Book
             </Button>
@@ -58,7 +67,15 @@ function AllBooks() {
           bookData={bookData}
           setBookData={setBookData}
         />
-
+        <DeleteBook
+          showDeleteModal={showDeleteModal}
+          setShowDeleteModal={setShowDeleteModal}
+          deleteModalClose={deleteModalClose}
+          deleteModalShow={deleteModalShow}
+          bookData={bookData}
+          setBookData={setBookData}
+          getBookKey={getBookKey}
+        />
         
            <div
           className="student-content mx-4 px-3"
@@ -76,21 +93,30 @@ function AllBooks() {
         </div>
           {bookData.map((item) => {
             return (
-              <div class="   border-bottom   py-4 mx-4" key={item.key}>
-          <div class="row">
-                  <div class="col">{item.bookTitle}</div>
-                  <div class="col">{item.author}</div>
-            <div class="col">{item.language}</div>
-            <div class="col">{item.totalCopies}</div>
-            <div class="col">{item.remaining}</div>
+              <div className="   border-bottom   py-4 mx-4" key={item.key}>
+          <div className="row">
+                  <div className="col">{item.bookTitle}</div>
+                  <div className="col">{item.author}</div>
+            <div className="col">{item.language}</div>
+            <div className="col">{item.totalCopies}</div>
+            <div className="col">{item.remaining}</div>
 
-            <div class="col ">
+            <div className="col ">
               <div className="d-flex  actions px-2">
                 <div>
                   <img src="/img/edit-icon.png" alt="" className="" />
                 </div>
                 <div className="">
-                <img src="/img/delete-icon.png" alt="" className="mx-1" onClick={() =>{deleteBook(item.key)}} />
+                        <img src="/img/delete-icon.png" alt=""
+                          className="mx-1"
+                          // onClick={() => { deleteBook(item.key) }}
+                          // onClick={deleteModalShow}
+                          onClick={() =>
+                          {
+                            deleteModalShow();
+                            bookKey(item.key)
+                          }}
+                        />
                 </div>
               </div>
             </div>

@@ -89,14 +89,14 @@ function ViewStudent() {
 
           {studentData.map((item) => {
             return (
-              <div class="border-bottom   py-4 " key={item.key}>
-                <div class="row">
-                  <div class="col">{item.bookTitle}</div>
-                  <div class="col">{item.author}</div>
-                  <div class="col">{item.issueDate}</div>
-                  <div class="col">{item.dueDate}</div>
-                  <div class="col">{item.returnDate}</div>
-                  <div class="col">{item.fine}</div>
+              <div className="border-bottom   py-4 " key={item.key}>
+                <div className="row">
+                  <div className="col">{item.bookTitle}</div>
+                  <div className="col">{item.author}</div>
+                  <div className="col">{item.issueDate}</div>
+                  <div className="col">{item.dueDate}</div>
+                  <div className="col">{item.returnDate}</div>
+                  <div className="col">{item.fine}</div>
                 </div>
               </div>
             );

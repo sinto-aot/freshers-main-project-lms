@@ -12,8 +12,25 @@ const bookContext = createContext();
 
 function App() {
   const [studentData, setStudentData] = useState([]);
-  const [bookData, setBookData] = useState([]);
-
+  const [bookData, setBookData] = useState([
+    // {
+    //   key: 1,
+    //   bookTitle: "book 1",
+    //   author: "author 1",
+    //   language: "lang 1",
+    //   totalCopies: "2",
+    //   remaining:"7"
+    // },
+    // {
+    //   key: 2,
+    //   bookTitle: "book 1",
+    //   author: "author 1",
+    //   language: "lang 1",
+    //   totalCopies: "2",
+    //   remaining:"7"
+    // },
+  ]);
+  console.log(bookData)
 
   const [auth, setAuth] = useState(false);
   const loginCheck = () => {

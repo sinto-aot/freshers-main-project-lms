@@ -1,4 +1,4 @@
-import React, { useState, createContext, useContext } from "react";
+import React, { useState, useContext } from "react";
 import Navbar from "../Navbar";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
@@ -7,30 +7,28 @@ import EditStudent from "./EditStudent";
 import DeleteStudent from "./DeleteStudent";
 import { Link } from "react-router-dom";
 import { studentContext } from "../../App";
-import shortid from "shortid";
 
 function Student() {
-  const [showAddModal, setShowAddModal] = useState(false);
-  const [showEditModal, setShowEditModal] = useState(false);
-  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [studentData, setStudentData] = useContext(studentContext);
 
+  const [showAddModal, setShowAddModal] = useState(false);
   const handleAddShow = () => setShowAddModal(true);
   const handleAddClose = () => setShowAddModal(false);
 
+  const [showEditModal, setShowEditModal] = useState(false);
   const handleEditShow = () => setShowEditModal(true);
   const handleEditClose = () => setShowEditModal(false);
 
-  const handleDeleteShow = () => setShowDeleteModal(true);
-  const handleDeleteClose = () => setShowDeleteModal(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const deleteModalClose = () => setShowDeleteModal(false);
+  const deleteModalShow = () => setShowDeleteModal(true);
 
 
-  const [studentData, setStudentData] = useContext(studentContext);
-
-  
-  const deleteStudent = (id) => {
-    console.log(id);
-    setStudentData(studentData.filter((item) => id !== item.key));
-  };
+  const [getStudentKey, setGetStudentKey] = useState("");
+  const studentKey = (getStudentKey) => {
+    setGetStudentKey(getStudentKey)
+    console.log(getStudentKey)
+  }
 
   return (
     <div className="d-flex ">
@@ -79,12 +77,16 @@ function Student() {
           handleEditClose={handleEditClose}
           handleEditShow={handleEditShow}
         />
-        {/* <DeleteStudent
+        <DeleteStudent
           showDeleteModal={showDeleteModal}
           setShowDeleteModal={setShowDeleteModal}
-          handleDeleteClose={handleDeleteClose}
-          handleDeleteShow ={handleDeleteShow}
-        /> */}
+          deleteModalClose={deleteModalClose}
+          deleteModalShow={deleteModalShow}
+          studentData={studentData}
+          setStudentData={setStudentData}
+          getStudentKey={getStudentKey}
+        />
+      
         <div
           className="student-content mx-4 px-3"
           style={{ backgroundColor: "#FFF" }}
@@ -119,8 +121,10 @@ function Student() {
                           alt=""
                           className="mx-1"
                           // onMouseOver={handleDeleteShow}
-                          onClick={() => {
-                            deleteStudent(item.key)
+                          onClick={() =>
+                          {
+                            deleteModalShow();
+                            studentKey(item.key)
                           }}
                          
                         />

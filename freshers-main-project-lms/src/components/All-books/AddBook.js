@@ -2,34 +2,42 @@ import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
-import shortid from "shortid"
+import shortid from "shortid";
 
-function AddBooks({ show, setShow, handleClose, handleShow, bookData, setBookData }) {
-
+function AddBooks({
+  show,
+  handleClose,
+  bookData,
+  setBookData,
+}) {
   const [bookInput, setBookInput] = useState({
-    bookTitle:"",author:"",language:"",totalCopies:"",remaining:""
-  })
-
+    bookTitle: "",
+    author: "",
+    language: "",
+    totalCopies: "",
+    remaining: "",
+  });
 
   const handleBookInput = (e) => {
     let name = e.target.name;
     let value = e.target.value;
 
-
-    setBookInput({ ...bookInput, [name]: value })
-    
-  }
+    setBookInput({ ...bookInput, [name]: value });
+  };
 
   const handleAddBook = () => {
-    setBookData([...bookData, {
-      key: shortid.generate(),
-      bookTitle: bookInput.bookTitle,
-      author: bookInput.author,
-      language: bookInput.language,
-      totalCopies: bookInput.totalCopies,
-      remaining:bookInput.remaining
-    }])
-  }
+    setBookData([
+      ...bookData,
+      {
+        key: shortid.generate(),
+        bookTitle: bookInput.bookTitle,
+        author: bookInput.author,
+        language: bookInput.language,
+        totalCopies: bookInput.totalCopies,
+        remaining: bookInput.remaining,
+      },
+    ]);
+  };
 
   return (
     <>
@@ -64,7 +72,11 @@ function AddBooks({ show, setShow, handleClose, handleShow, bookData, setBookDat
             </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label className="modal-label">Language</Form.Label>
-              <Form.Select name="language" value={bookInput.language} onChange={handleBookInput}>
+              <Form.Select
+                name="language"
+                value={bookInput.language}
+                onChange={handleBookInput}
+              >
                 <option value="">Select Language</option>
                 <option>English</option>
                 <option>Malayalam</option>
@@ -83,8 +95,8 @@ function AddBooks({ show, setShow, handleClose, handleShow, bookData, setBookDat
                   value={bookInput.totalCopies}
                   onChange={handleBookInput}
                   placeholder="5"
-                  
-                  required/>
+                  required
+                />
               </Form.Group>
               <Form.Group
                 className="mb-3"
@@ -97,8 +109,8 @@ function AddBooks({ show, setShow, handleClose, handleShow, bookData, setBookDat
                   value={bookInput.remaining}
                   onChange={handleBookInput}
                   placeholder="2"
-                  
-                  required/>
+                  required
+                />
               </Form.Group>
             </div>
           </Form>
@@ -110,11 +122,10 @@ function AddBooks({ show, setShow, handleClose, handleShow, bookData, setBookDat
           <Button
             variant=""
             className="add-student-btn text-white"
-            // onClick={handleClose}
             onClick={() => {
               handleClose();
               handleAddBook();
-              setBookInput("")
+              setBookInput("");
             }}
           >
             Add Book
