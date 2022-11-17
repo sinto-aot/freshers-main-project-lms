@@ -8,6 +8,7 @@ function DeleteStudent({
   studentData,
   setStudentData,
   getStudentKey,
+
 }) {
   const deleteStudent = (id) => {
     console.log(id);

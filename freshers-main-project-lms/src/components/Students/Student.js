@@ -23,12 +23,26 @@ function Student() {
   const deleteModalClose = () => setShowDeleteModal(false);
   const deleteModalShow = () => setShowDeleteModal(true);
 
-
   const [getStudentKey, setGetStudentKey] = useState("");
   const studentKey = (getStudentKey) => {
     setGetStudentKey(getStudentKey)
     console.log(getStudentKey)
   }
+
+
+  const [getstudentName, setGetStudentName] = useState("");
+  const studentName = (getstudentName) => {
+    setGetStudentName(getstudentName)
+    console.log(getstudentName)
+  }
+
+  const [getStudentEmail, setGetStudentEmail] = useState("")
+  const studentEmail = (getStudentEmail) => {
+    setGetStudentEmail(getStudentEmail)
+    console.log(getStudentEmail)
+  }
+
+ 
 
   return (
     <div className="d-flex ">
@@ -76,6 +90,14 @@ function Student() {
           setShowEditModal={setShowEditModal}
           handleEditClose={handleEditClose}
           handleEditShow={handleEditShow}
+          studentData={studentData}
+          setStudentData={setStudentData}
+          getStudentKey={getStudentKey}
+          getstudentName={getstudentName}
+          setGetStudentName={setGetStudentName}
+          getStudentEmail={getStudentEmail}
+          setGetStudentEmail={setGetStudentEmail}
+
         />
         <DeleteStudent
           showDeleteModal={showDeleteModal}
@@ -112,7 +134,12 @@ function Student() {
                           src="/img/edit-icon.png"
                           alt=""
                           className=""
-                          onClick={handleEditShow}
+                          onClick={() => {
+                            handleEditShow();
+                            studentKey(item.key);
+                            studentName(item.name)
+                            studentEmail(item.email)
+                          }}
                         />
                       </div>
                       <div  >
@@ -124,7 +151,8 @@ function Student() {
                           onClick={() =>
                           {
                             deleteModalShow();
-                            studentKey(item.key)
+                            studentKey(item.key);
+                           
                           }}
                          
                         />

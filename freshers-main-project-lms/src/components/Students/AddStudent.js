@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
@@ -11,10 +12,8 @@ function AddStudent({ showAddModal, setShowAddModal, handleAddClose, handleShow,
 
  
   const handleInput = (e) => {
-    
     let  name = e.target.name;
     let  value = e.target.value;
-
     setStudentInput({ ...studentInput, [name]: value });
     // console.log(studentInput)
 
@@ -38,7 +37,7 @@ function AddStudent({ showAddModal, setShowAddModal, handleAddClose, handleShow,
           <Modal.Title className="modal-header">Add Student</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form>
+          <Form className="" >
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label className="modal-label">Name</Form.Label>
               <Form.Control
@@ -50,6 +49,9 @@ function AddStudent({ showAddModal, setShowAddModal, handleAddClose, handleShow,
                 autoFocus
                 required
               />
+              <div class="valid-feedback">
+      Looks good!
+    </div>
             </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label className="modal-label">Email</Form.Label>
@@ -90,7 +92,7 @@ function AddStudent({ showAddModal, setShowAddModal, handleAddClose, handleShow,
           </Button>
           <Button
             variant=""
-            className="add-student-btn text-white"
+            className="add-student-btn text-white" 
             onClick={() => {
               handleAddClose();
               handleAddStudent();
