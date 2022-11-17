@@ -5,6 +5,7 @@ import AddBook from "./AddBook";
 import { useState, useContext } from "react";
 import { bookContext } from "../../App";
 import DeleteBook from "./DeleteBook";
+import EditBook from "./EditBook";
 
 
 function AllBooks() {
@@ -15,7 +16,10 @@ function AllBooks() {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  
+  const [showEditModal, setShowEditModal] = useState(false);
+  const handleEditShow = () => setShowEditModal(true);
+  const handleEditClose = () => setShowEditModal(false);
+
 
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const deleteModalClose = () => setShowDeleteModal(false);
@@ -27,6 +31,34 @@ function AllBooks() {
     setGetBookKey(getBookKey)
     console.log(getBookKey)
   }
+
+  const [bookAuthor, setBookAuthor] = useState("");
+  const EditBookAuthor = (bookAuthor) => {
+    setBookAuthor(bookAuthor)
+  }
+
+  const [bookTitle, setBookTitle] = useState("");
+  const EditBookTitle = (bookTitle) => {
+    setBookTitle(bookTitle)
+  }
+
+  const [bookLanguage, setBookLanguage] = useState("");
+  const EditBookLanguage = (bookLanguage) => {
+    setBookLanguage(bookLanguage)
+  }
+
+  const [bookTotalCopies, setBookTotalCopies] = useState("");
+  const EditBookTotalCopies = (bookTotalCopies) => {
+    setBookTotalCopies(bookTotalCopies)
+  }
+
+  const [bookRemaining, setBookRemaining] = useState("");
+  const EditBookRemaining = (bookRemaining) => {
+    setBookRemaining(bookRemaining)
+  }
+  
+
+  
 
   return (
     <div className="d-flex ">
@@ -67,6 +99,25 @@ function AllBooks() {
           bookData={bookData}
           setBookData={setBookData}
         />
+        <EditBook
+          showEditModal={showEditModal}
+          setShowEditModal={setShowEditModal}
+          handleEditShow={handleEditShow}
+          handleEditClose={handleEditClose}
+          bookData={bookData}
+          setBookData={setBookData}
+          getBookKey={getBookKey}
+          bookTitle={bookTitle}
+          setBookTitle={setBookTitle}
+          bookAuthor={bookAuthor}
+          setBookAuthor={setBookAuthor}
+          bookLanguage={bookLanguage}
+          setBookLanguage={setBookLanguage}
+          bookTotalCopies={bookTotalCopies}
+          setBookTotalCopies={setBookTotalCopies}
+          bookRemaining={bookRemaining}
+          setBookRemaining={setBookRemaining}
+        />
         <DeleteBook
           showDeleteModal={showDeleteModal}
           setShowDeleteModal={setShowDeleteModal}
@@ -75,6 +126,7 @@ function AllBooks() {
           bookData={bookData}
           setBookData={setBookData}
           getBookKey={getBookKey}
+
         />
         
            <div
@@ -104,7 +156,19 @@ function AllBooks() {
             <div className="col ">
               <div className="d-flex  actions px-2">
                 <div>
-                  <img src="/img/edit-icon.png" alt="" className="" />
+                        <img src="/img/edit-icon.png"
+                          alt=""
+                          className=""
+                          onClick={() => {
+                            handleEditShow();
+                            bookKey(item.key);
+                            EditBookTitle(item.bookTitle);
+                            EditBookAuthor(item.author)
+                            EditBookLanguage(item.language)
+                            EditBookTotalCopies(item.totalCopies)
+                            EditBookRemaining(item.remaining)
+                          }}
+                        />
                 </div>
                 <div className="">
                         <img src="/img/delete-icon.png" alt=""

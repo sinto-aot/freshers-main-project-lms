@@ -42,7 +42,18 @@ function Student() {
     console.log(getStudentEmail)
   }
 
- 
+  const [getStudentPassword, setGetStudentPassword] = useState("")
+  const studentPassword = (getStudentPassword) => {
+    setGetStudentPassword(getStudentPassword)
+    console.log(getStudentPassword)
+  }
+
+  const [getStudentConPassword, setGetStudentConPassword] = useState("")
+  const studentConPassword = (getStudentConPassword) => {
+    setGetStudentConPassword(getStudentConPassword)
+    console.log(getStudentConPassword)
+  }
+
 
   return (
     <div className="d-flex ">
@@ -97,6 +108,10 @@ function Student() {
           setGetStudentName={setGetStudentName}
           getStudentEmail={getStudentEmail}
           setGetStudentEmail={setGetStudentEmail}
+          getStudentPassword={getStudentPassword}
+          setGetStudentPassword={setGetStudentPassword}
+          getStudentConPassword={getStudentConPassword}
+          setGetStudentConPassword={setGetStudentConPassword}
 
         />
         <DeleteStudent
@@ -139,6 +154,8 @@ function Student() {
                             studentKey(item.key);
                             studentName(item.name)
                             studentEmail(item.email)
+                            studentPassword(item.password)
+                            studentConPassword(item.cPassword)
                           }}
                         />
                       </div>

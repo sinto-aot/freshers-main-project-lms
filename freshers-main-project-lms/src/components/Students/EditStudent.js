@@ -12,22 +12,25 @@ function EditStudent({
   getstudentName,
   setGetStudentName,
   getStudentEmail,
-  setGetStudentEmail
+  setGetStudentEmail,
+  getStudentPassword,
+  setGetStudentPassword,
+  getStudentConPassword,
+  setGetStudentConPassword,
 }) {
-  
   const handleEditName = (e) => {
-    setGetStudentName(e.target.value)
-  }
+    setGetStudentName(e.target.value);
+  };
   const handleEditEmail = (e) => {
-    setGetStudentEmail(e.target.value)
-  }
+    setGetStudentEmail(e.target.value);
+  };
   const handleEditPassword = (e) => {
-    setGetStudentName(e.target.value)
-  }
+    setGetStudentPassword(e.target.value);
+  };
   const handleEditConPassword = (e) => {
-    setGetStudentName(e.target.value)
-  }
- 
+    setGetStudentConPassword(e.target.value);
+  };
+
   const updateStudent = () => {
     setStudentData(
       studentData.map((student) => {
@@ -35,17 +38,16 @@ function EditStudent({
           return {
             ...student,
             name: getstudentName,
-            email: getStudentEmail
+            email: getStudentEmail,
+            password: getStudentPassword,
+            cpassword: getStudentConPassword,
           };
         }
-      
         return student;
       })
     );
-  }
-    
+  };
 
-   
   return (
     <>
       <Modal show={showEditModal} onHide={handleEditClose}>
@@ -61,9 +63,10 @@ function EditStudent({
                 placeholder="Eg: John Doe"
                 value={getstudentName}
                 onChange={handleEditName}
-                autoFocus />
+                autoFocus
+              />
             </Form.Group>
-            
+
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label className="modal-label">Email</Form.Label>
               <Form.Control
@@ -78,15 +81,19 @@ function EditStudent({
               <Form.Label className="modal-label">Password</Form.Label>
               <Form.Control
                 type="password"
+                value={getStudentPassword}
                 onChange={handleEditPassword}
-                placeholder="********" />
+                placeholder="********"
+              />
             </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label className="modal-label">Confirm Password</Form.Label>
               <Form.Control
                 type="password"
+                value={getStudentConPassword}
                 onChange={handleEditConPassword}
-                placeholder="********" />
+                placeholder="********"
+              />
             </Form.Group>
           </Form>
         </Modal.Body>
