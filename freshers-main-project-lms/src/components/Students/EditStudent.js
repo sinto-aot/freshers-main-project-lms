@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
@@ -8,39 +7,39 @@ function EditStudent({
   handleEditClose,
   studentData,
   setStudentData,
-  getStudentKey,
-  getstudentName,
-  setGetStudentName,
-  getStudentEmail,
-  setGetStudentEmail,
-  getStudentPassword,
-  setGetStudentPassword,
-  getStudentConPassword,
-  setGetStudentConPassword,
+  studentKey,
+  studentName,
+  setStudentName,
+  studentEmail,
+  setStudentEmail,
+  studentPassword,
+  setStudentPassword,
+  studentConPassword,
+  setStudentConPassword,
 }) {
   const handleEditName = (e) => {
-    setGetStudentName(e.target.value);
+    setStudentName(e.target.value);
   };
   const handleEditEmail = (e) => {
-    setGetStudentEmail(e.target.value);
+    setStudentEmail(e.target.value);
   };
   const handleEditPassword = (e) => {
-    setGetStudentPassword(e.target.value);
+    setStudentPassword(e.target.value);
   };
   const handleEditConPassword = (e) => {
-    setGetStudentConPassword(e.target.value);
+    setStudentConPassword(e.target.value);
   };
 
   const updateStudent = () => {
     setStudentData(
       studentData.map((student) => {
-        if (student.key === getStudentKey) {
+        if (student.key === studentKey) {
           return {
             ...student,
-            name: getstudentName,
-            email: getStudentEmail,
-            password: getStudentPassword,
-            cpassword: getStudentConPassword,
+            name: studentName,
+            email: studentEmail,
+            password: studentPassword,
+            cpassword: studentConPassword,
           };
         }
         return student;
@@ -61,7 +60,7 @@ function EditStudent({
               <Form.Control
                 type="text"
                 placeholder="Eg: John Doe"
-                value={getstudentName}
+                value={studentName}
                 onChange={handleEditName}
                 autoFocus
               />
@@ -72,7 +71,7 @@ function EditStudent({
               <Form.Control
                 type="email"
                 placeholder="Eg: johndoe@gmail.com"
-                value={getStudentEmail}
+                value={studentEmail}
                 onChange={handleEditEmail}
                 autoFocus
               />
@@ -81,7 +80,7 @@ function EditStudent({
               <Form.Label className="modal-label">Password</Form.Label>
               <Form.Control
                 type="password"
-                value={getStudentPassword}
+                value={studentPassword}
                 onChange={handleEditPassword}
                 placeholder="********"
               />
@@ -90,7 +89,7 @@ function EditStudent({
               <Form.Label className="modal-label">Confirm Password</Form.Label>
               <Form.Control
                 type="password"
-                value={getStudentConPassword}
+                value={studentConPassword}
                 onChange={handleEditConPassword}
                 placeholder="********"
               />

@@ -23,37 +23,11 @@ function Student() {
   const deleteModalClose = () => setShowDeleteModal(false);
   const deleteModalShow = () => setShowDeleteModal(true);
 
-  const [getStudentKey, setGetStudentKey] = useState("");
-  const studentKey = (getStudentKey) => {
-    setGetStudentKey(getStudentKey)
-    console.log(getStudentKey)
-  }
-
-
-  const [getstudentName, setGetStudentName] = useState("");
-  const studentName = (getstudentName) => {
-    setGetStudentName(getstudentName)
-    console.log(getstudentName)
-  }
-
-  const [getStudentEmail, setGetStudentEmail] = useState("")
-  const studentEmail = (getStudentEmail) => {
-    setGetStudentEmail(getStudentEmail)
-    console.log(getStudentEmail)
-  }
-
-  const [getStudentPassword, setGetStudentPassword] = useState("")
-  const studentPassword = (getStudentPassword) => {
-    setGetStudentPassword(getStudentPassword)
-    console.log(getStudentPassword)
-  }
-
-  const [getStudentConPassword, setGetStudentConPassword] = useState("")
-  const studentConPassword = (getStudentConPassword) => {
-    setGetStudentConPassword(getStudentConPassword)
-    console.log(getStudentConPassword)
-  }
-
+  const [studentKey, setStudentKey] = useState("");
+  const [studentName, setStudentName] = useState("");
+  const [studentEmail, setStudentEmail] = useState("");
+  const [studentPassword, setStudentPassword] = useState("");
+  const [studentConPassword, setStudentConPassword] = useState("");
 
   return (
     <div className="d-flex ">
@@ -103,16 +77,15 @@ function Student() {
           handleEditShow={handleEditShow}
           studentData={studentData}
           setStudentData={setStudentData}
-          getStudentKey={getStudentKey}
-          getstudentName={getstudentName}
-          setGetStudentName={setGetStudentName}
-          getStudentEmail={getStudentEmail}
-          setGetStudentEmail={setGetStudentEmail}
-          getStudentPassword={getStudentPassword}
-          setGetStudentPassword={setGetStudentPassword}
-          getStudentConPassword={getStudentConPassword}
-          setGetStudentConPassword={setGetStudentConPassword}
-
+          studentKey={studentKey}
+          studentName={studentName}
+          setStudentName={setStudentName}
+          studentEmail={studentEmail}
+          setStudentEmail={setStudentEmail}
+          studentPassword={studentPassword}
+          setStudentPassword={setStudentPassword}
+          studentConPassword={studentConPassword}
+          setStudentConPassword={setStudentConPassword}
         />
         <DeleteStudent
           showDeleteModal={showDeleteModal}
@@ -121,9 +94,9 @@ function Student() {
           deleteModalShow={deleteModalShow}
           studentData={studentData}
           setStudentData={setStudentData}
-          getStudentKey={getStudentKey}
+          studentKey={studentKey}
         />
-      
+
         <div
           className="student-content mx-4 px-3"
           style={{ backgroundColor: "#FFF" }}
@@ -138,11 +111,11 @@ function Student() {
 
           {studentData.map((item) => {
             return (
-              <div class="border-bottom   py-4 " key={item.key}>
-                <div class="row">
-                  <div class="col">{item.name}</div>
-                  <div class="col">{item.email}</div>
-                  <div class="col ">
+              <div className="border-bottom   py-4 " key={item.key}>
+                <div className="row">
+                  <div className="col">{item.name}</div>
+                  <div className="col">{item.email}</div>
+                  <div className="col ">
                     <div className="d-flex  actions">
                       <div>
                         <img
@@ -151,27 +124,23 @@ function Student() {
                           className=""
                           onClick={() => {
                             handleEditShow();
-                            studentKey(item.key);
-                            studentName(item.name)
-                            studentEmail(item.email)
-                            studentPassword(item.password)
-                            studentConPassword(item.cPassword)
+                            setStudentKey(item.key);
+                            setStudentName(item.name);
+                            setStudentEmail(item.email);
+                            setStudentPassword(item.password);
+                            setStudentConPassword(item.cPassword);
                           }}
                         />
                       </div>
-                      <div  >
+                      <div>
                         <img
                           src="/img/delete-icon.png"
                           alt=""
                           className="mx-1"
-                          // onMouseOver={handleDeleteShow}
-                          onClick={() =>
-                          {
+                          onClick={() => {
                             deleteModalShow();
-                            studentKey(item.key);
-                           
+                            setStudentKey(item.key);
                           }}
-                         
                         />
                       </div>
                       <Link to="/view-student">

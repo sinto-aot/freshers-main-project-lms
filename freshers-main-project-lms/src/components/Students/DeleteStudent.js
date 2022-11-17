@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 
@@ -7,8 +6,7 @@ function DeleteStudent({
   deleteModalClose,
   studentData,
   setStudentData,
-  getStudentKey,
-
+  studentKey,
 }) {
   const deleteStudent = (id) => {
     console.log(id);
@@ -30,10 +28,10 @@ function DeleteStudent({
             className="delete-btn text-white"
             onClick={() => {
               deleteModalClose();
-              deleteStudent(getStudentKey);
+              deleteStudent(studentKey);
             }}
           >
-            Delete 
+            Delete
           </Button>
         </Modal.Footer>
       </Modal>

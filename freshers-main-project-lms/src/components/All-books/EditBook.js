@@ -1,15 +1,14 @@
-import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
-import shortid from "shortid";
+
 
 function EditBook({
   showEditModal,
   handleEditClose,
   bookData,
   setBookData,
-  getBookKey,
+  bookKey,
   bookTitle,
   setBookTitle,
   bookAuthor,
@@ -39,28 +38,25 @@ function EditBook({
 
   const handleEditBookRemaining = (e) => {
     setBookRemaining(e.target.value);
-    };
-    
+  };
 
-    const updateBook = () => {
-        setBookData(
-            bookData.map((book) => {
-                if (book.key === getBookKey) {
-                    return {
-                        ...book,
-                        bookTitle: bookTitle,
-                        author: bookAuthor,
-                        language: bookLanguage,
-                        totalCopies: bookTotalCopies,
-                        remaining: bookRemaining
-                    };
-                }
-                return book
-            }
-            )
-        );
-    };
-
+  const updateBook = () => {
+    setBookData(
+      bookData.map((book) => {
+        if (book.key === bookKey) {
+          return {
+            ...book,
+            bookTitle: bookTitle,
+            author: bookAuthor,
+            language: bookLanguage,
+            totalCopies: bookTotalCopies,
+            remaining: bookRemaining,
+          };
+        }
+        return book;
+      })
+    );
+  };
 
   return (
     <>
@@ -146,9 +142,8 @@ function EditBook({
             variant=""
             className="add-student-btn text-white"
             onClick={() => {
-                handleEditClose();
-                updateBook();
-          
+              handleEditClose();
+              updateBook();
             }}
           >
             Update

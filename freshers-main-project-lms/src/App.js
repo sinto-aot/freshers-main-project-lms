@@ -1,5 +1,5 @@
-import { useState, createContext } from "react";
 import "./App.css";
+import { useState, createContext } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import AllBooks from "./components/All-books/AllBooks";
 import IssuedBooks from "./components/Issued-books/IssuedBooks";
@@ -12,25 +12,8 @@ const bookContext = createContext();
 
 function App() {
   const [studentData, setStudentData] = useState([]);
-  const [bookData, setBookData] = useState([
-    // {
-    //   key: 1,
-    //   bookTitle: "book 1",
-    //   author: "author 1",
-    //   language: "lang 1",
-    //   totalCopies: "2",
-    //   remaining:"7"
-    // },
-    // {
-    //   key: 2,
-    //   bookTitle: "book 1",
-    //   author: "author 1",
-    //   language: "lang 1",
-    //   totalCopies: "2",
-    //   remaining:"7"
-    // },
-  ]);
-  console.log(bookData)
+  const [bookData, setBookData] = useState([]);
+  console.log(bookData);
 
   const [auth, setAuth] = useState(false);
   const loginCheck = () => {
@@ -39,29 +22,33 @@ function App() {
 
   return (
     <div className="">
-      <bookContext.Provider value={[bookData,setBookData]}>
-      <studentContext.Provider value={[studentData,setStudentData]}>
-        <Router>
-          <Routes>
-            <Route
-             path="/"
-              exact
-              element={ 
-                !auth ? <LoginForm loginCheck={loginCheck} /> : <IssuedBooks />
-              }
-            />
-            <Route path="/issuedbooks" element={<IssuedBooks />} />
-            <Route path="/allbooks" element={<AllBooks />} />
-            <Route path="/students" element={<Student />} />
-            <Route path="/view-student" element={<ViewStudent />} />
-          </Routes>
-        </Router>
+      <bookContext.Provider value={[bookData, setBookData]}>
+        <studentContext.Provider value={[studentData, setStudentData]}>
+          <Router>
+            <Routes>
+              <Route
+                path="/"
+                exact
+                element={
+                  !auth ? (
+                    <LoginForm loginCheck={loginCheck} />
+                  ) : (
+                    <IssuedBooks />
+                  )
+                }
+              />
+              <Route path="/issuedbooks" element={<IssuedBooks />} />
+              <Route path="/allbooks" element={<AllBooks />} />
+              <Route path="/students" element={<Student />} />
+              <Route path="/view-student" element={<ViewStudent />} />
+            </Routes>
+          </Router>
         </studentContext.Provider>
-        </bookContext.Provider>
+      </bookContext.Provider>
     </div>
   );
 }
 
 export default App;
-export { studentContext }
-export {bookContext}
+export { studentContext };
+export { bookContext };

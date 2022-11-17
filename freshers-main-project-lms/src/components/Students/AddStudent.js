@@ -12,6 +12,7 @@ function AddStudent({ showAddModal, setShowAddModal, handleAddClose, handleShow,
 
  
   const handleInput = (e) => {
+  
     let  name = e.target.name;
     let  value = e.target.value;
     setStudentInput({ ...studentInput, [name]: value });
