@@ -9,6 +9,7 @@ import EditBook from "./EditBook";
 
 function AllBooks() {
   const [bookData, setBookData] = useContext(bookContext);
+  const [searchBook,setSearchBook] = useState("")
 
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -47,8 +48,11 @@ function AllBooks() {
           <div className="search col-5">
             <Form.Control
               type="text"
-              placeholder="Search by student name or email "
+              placeholder="Search by student book title or author "
               className=" mt-3 mx-4 "
+              onChange={(e) => {
+                setSearchBook(e.target.value);
+              }}
             />
           </div>
           <div className="add-student col-5 mt-3 d-flex justify-content-end ">
@@ -113,7 +117,13 @@ function AllBooks() {
               <div className="col">Actions</div>
             </div>
           </div>
-          {bookData.map((item) => {
+          {bookData.filter((value) => {
+            if (searchBook == "") {
+              return value
+            } else if (value.bookTitle.toLowerCase().includes(searchBook.toLowerCase())) {
+              return value
+            }
+          }).map((item) => {
             return (
               <div className="   border-bottom   py-4 mx-4" key={item.key}>
                 <div className="row">
@@ -122,7 +132,6 @@ function AllBooks() {
                   <div className="col">{item.language}</div>
                   <div className="col">{item.totalCopies}</div>
                   <div className="col">{item.remaining}</div>
-
                   <div className="col ">
                     <div className="d-flex  actions px-2">
                       <div>

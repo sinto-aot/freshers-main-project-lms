@@ -1,9 +1,18 @@
-import React, { useState } from "react";
+import React, { useState,useContext } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
+import { bookContext, studentContext } from "../../App";
 
-function IssueBook({ show, setShow, handleClose, handleShow }) {
+
+function IssueBook({
+  show,
+  handleClose
+  
+ 
+}) {
+  const [studentData, setStudentData] = useContext(studentContext);
+  const [bookData, setBookData] = useContext(bookContext);
   return (
     <>
       <Modal show={show} onHide={handleClose}>
@@ -16,12 +25,26 @@ function IssueBook({ show, setShow, handleClose, handleShow }) {
               <Form.Label className="modal-label">Book</Form.Label>
               <Form.Select>
                 <option>Select Book</option>
+                {bookData.map((item) => {
+                  return (
+                    <option value={item.bookTitle}>{item.bookTitle}</option>
+
+                  );
+                }
+                )}
               </Form.Select>
             </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label className="modal-label">Student</Form.Label>
               <Form.Select>
                 <option>Select Student</option>
+
+                {studentData.map((item) => {
+                  return (
+                    <option value={item.name}>{item.name}</option>
+                  );
+                })}
+                
               </Form.Select>
             </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">

@@ -17,16 +17,16 @@ function EditStudent({
   studentConPassword,
   setStudentConPassword,
 }) {
-  const handleEditName = (e) => {
+  const editName = (e) => {
     setStudentName(e.target.value);
   };
-  const handleEditEmail = (e) => {
+  const editEmail = (e) => {
     setStudentEmail(e.target.value);
   };
-  const handleEditPassword = (e) => {
+  const editPassword = (e) => {
     setStudentPassword(e.target.value);
   };
-  const handleEditConPassword = (e) => {
+  const editConfPassword = (e) => {
     setStudentConPassword(e.target.value);
   };
 
@@ -61,7 +61,7 @@ function EditStudent({
                 type="text"
                 placeholder="Eg: John Doe"
                 value={studentName}
-                onChange={handleEditName}
+                onChange={editName}
                 autoFocus
               />
             </Form.Group>
@@ -72,7 +72,7 @@ function EditStudent({
                 type="email"
                 placeholder="Eg: johndoe@gmail.com"
                 value={studentEmail}
-                onChange={handleEditEmail}
+                onChange={editEmail}
                 autoFocus
               />
             </Form.Group>
@@ -81,7 +81,7 @@ function EditStudent({
               <Form.Control
                 type="password"
                 value={studentPassword}
-                onChange={handleEditPassword}
+                onChange={editPassword}
                 placeholder="********"
               />
             </Form.Group>
@@ -90,7 +90,7 @@ function EditStudent({
               <Form.Control
                 type="password"
                 value={studentConPassword}
-                onChange={handleEditConPassword}
+                onChange={editConfPassword}
                 placeholder="********"
               />
             </Form.Group>

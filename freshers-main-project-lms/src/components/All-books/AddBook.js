@@ -90,7 +90,7 @@ function AddBooks({
               >
                 <Form.Label className="modal-label">Total Copies</Form.Label>
                 <Form.Control
-                  type="text"
+                  type="number"
                   name="totalCopies"
                   value={bookInput.totalCopies}
                   onChange={handleBookInput}
@@ -104,7 +104,7 @@ function AddBooks({
               >
                 <Form.Label className="modal-label">Remaining</Form.Label>
                 <Form.Control
-                  type="text"
+                  type="number"
                   name="remaining"
                   value={bookInput.remaining}
                   onChange={handleBookInput}

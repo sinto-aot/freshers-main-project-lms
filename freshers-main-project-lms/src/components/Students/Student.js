@@ -7,9 +7,12 @@ import EditStudent from "./EditStudent";
 import DeleteStudent from "./DeleteStudent";
 import { Link } from "react-router-dom";
 import { studentContext } from "../../App";
+import IssueBook from "../Issued-books/IssueBook";
 
 function Student() {
   const [studentData, setStudentData] = useContext(studentContext);
+  const [searchStudent, setSearchStudent] = useState("")
+
 
   const [showAddModal, setShowAddModal] = useState(false);
   const handleAddShow = () => setShowAddModal(true);
@@ -49,6 +52,9 @@ function Student() {
               type="text"
               placeholder="Search by student name or email "
               className=" mt-3 mx-4 "
+              onChange={(e) => {
+                setSearchStudent(e.target.value);
+              }}
             />
           </div>
           <div className="add-student col-5 mt-3 d-flex justify-content-end ">
@@ -96,7 +102,14 @@ function Student() {
           setStudentData={setStudentData}
           studentKey={studentKey}
         />
-
+     
+        <IssueBook
+          studentData={studentData}
+          setStudentData={setStudentData}
+          studentKey={studentKey}
+          studentName={studentName}
+          setStudentName={setStudentName}
+        />
         <div
           className="student-content mx-4 px-3"
           style={{ backgroundColor: "#FFF" }}
@@ -109,7 +122,13 @@ function Student() {
             </div>
           </div>
 
-          {studentData.map((item) => {
+          {studentData.filter((value) => {
+            if (searchStudent == "") {
+              return value
+            } else if (value.name.toLowerCase().includes(searchStudent.toLowerCase())) {
+              return value
+            }
+          }).map((item) => {
             return (
               <div className="border-bottom   py-4 " key={item.key}>
                 <div className="row">

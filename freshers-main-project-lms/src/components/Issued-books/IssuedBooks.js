@@ -3,9 +3,18 @@ import Navbar from "../Navbar";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import IssueBook from "./IssueBook";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { studentContext, bookContext, issueBookContext } from "../../App";
 
-function IssuedBooks() {
+function IssuedBooks({
+  studentKey,
+  studentName,
+  setStudentName
+}) {
+  const [issueBookData, setIssueBookData] = useContext(issueBookContext);
+  const [studentData, setStudentData] = useContext(studentContext);
+  const [bookData, setBookData] = useContext(bookContext);
+
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -13,7 +22,10 @@ function IssuedBooks() {
   return (
     <div className="d-flex ">
       <Navbar />
-      <div className="container issued-books-container" style={{ width: "100%",  backgroundColor: "#F5F5F5" }}>
+      <div
+        className="container issued-books-container"
+        style={{ width: "100%", backgroundColor: "#F5F5F5" }}
+      >
         <nav className="navbar border-bottom mx-4">
           <div className="container-fluid">
             <span className="navbar-brand nav-brand mb-0 h1 mt-3 mx-">
@@ -46,41 +58,63 @@ function IssuedBooks() {
           handleClose={handleClose}
           handleShow={handleShow}
         />
-         <div
+        <div
           className="issued-books-content mx-4 px-3"
           style={{ backgroundColor: "#FFF" }}
         >
-        <div className="  student-list border-bottom list-header  mt-5 py-4 mx-4">
-          <div className="row">
-            <div className="col">Book Title</div>
-            <div className="col">Student</div>
-            <div className="col">Issue Date</div>
-            <div className="col">Due Date</div>
-            <div className="col">
-              Fine <br /> (Rs. 10 per day){" "}
+          <div className="  student-list border-bottom list-header  mt-5 py-4 mx-4">
+            <div className="row">
+              <div className="col">Book Title</div>
+              <div className="col">Student</div>
+              <div className="col">Issue Date</div>
+              <div className="col">Due Date</div>
+              <div className="col">
+                Fine <br /> (Rs. 10 per day){" "}
+              </div>
+              <div className="col">Actions</div>
             </div>
-            <div className="col">Actions</div>
           </div>
-        </div>
 
-        <div class="   border-bottom   py-4 mx-4">
-          <div class="row">
-            <div class="col">It Start With Us</div>
-            <div class="col">Nitha Samuel</div>
-            <div class="col">02-11-2022 </div>
-            <div class="col">02-11-2022 </div>
-            <div class="col">10</div>
+          
+          {issueBookData.map((item) => {
+                return (
+                  <div className="   border-bottom   py-4 mx-4">
+            <div className="row">
+            
 
-            <div class="col ">
-              <div className="d-flex  actions px-2">
-                <div>
-                  <img src="/img/issue-book-logo.png" alt="" className="" />
+              {bookData.map((item) => {
+                return (
+                  <div className="col"></div>
+
+                )
+              })}
+
+              
+              {studentData.map((item) => {
+                return (
+                  <div className="col"></div>
+                );
+              })}
+              
+
+             
+              <div className="col"></div>
+              <div className="col"></div>
+              <div className="col"></div>
+
+              <div className="col ">
+                <div className="d-flex  actions px-2">
+                  <div>
+                    <img src="/img/issue-book-logo.png" alt="" className="" />
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          </div>
-          </div>
+          </div>  
+                );
+              })}
+          
+        </div>
       </div>
     </div>
   );

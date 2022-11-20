@@ -1,35 +1,53 @@
-
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
-import shortid from "shortid"
-function AddStudent({ showAddModal, setShowAddModal, handleAddClose, handleShow,studentData, setStudentData }) {
-    
+import shortid from "shortid";
+import { studentContext } from "../../App";
+function AddStudent({
+  showAddModal,
+  handleAddClose,
+}) {
+
+  const [studentData, setStudentData] = useContext(studentContext)
+  const [error, setError] = useState(false) 
   const [studentInput, setStudentInput] = useState({
-    name:"" ,email:"",password:"",cpassword:""
-  })
+    name: "",
+    email: "",
+    password: "",
+    cpassword: "",
+  });
 
- 
-  const handleInput = (e) => {
   
-    let  name = e.target.name;
-    let  value = e.target.value;
+
+  const handleInput = (e) => {
+    let name = e.target.name;
+    let value = e.target.value;
     setStudentInput({ ...studentInput, [name]: value });
-    // console.log(studentInput)
+  };
 
-   
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    
+  }
+
+  const handleAddStudent = () => {
+    if (studentInput.name.length === 0 || studentInput.email.length === 0 || studentInput.password.length === 0 || studentInput.cpassword.length === 0 && studentInput.password != studentInput.cpassword) {
+      setError(true)
+      
+    }else {
+      setStudentData([...studentData, {
+        key: shortid.generate(),
+        name: studentInput.name,
+        email: studentInput.email,
+        password: studentInput.password,
+        cpassword: studentInput.cpassword
+      }])
+    }
 
   }
-  const handleAddStudent= () =>{
-    setStudentData([...studentData, {
-      key: shortid.generate(),
-      name: studentInput.name,
-      email: studentInput.email,
-      password: studentInput.password,
-      cpassword: studentInput.cpassword
-    }])
-  }
+
+
 
   return (
     <>
@@ -38,7 +56,7 @@ function AddStudent({ showAddModal, setShowAddModal, handleAddClose, handleShow,
           <Modal.Title className="modal-header">Add Student</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form className="" >
+          <Form className="needs-validation" onSubmit={handleSubmit}>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label className="modal-label">Name</Form.Label>
               <Form.Control
@@ -50,9 +68,9 @@ function AddStudent({ showAddModal, setShowAddModal, handleAddClose, handleShow,
                 autoFocus
                 required
               />
-              <div class="valid-feedback">
-      Looks good!
-    </div>
+              {error ?
+                <p className="text-danger">Name can't be empty</p> : ""
+              }
             </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label className="modal-label">Email</Form.Label>
@@ -62,8 +80,10 @@ function AddStudent({ showAddModal, setShowAddModal, handleAddClose, handleShow,
                 value={studentInput.email}
                 onChange={handleInput}
                 placeholder="Eg: johndoe@gmail.com"
-                
               />
+              {error ?
+                <p className="text-danger">Email can't be empty</p> : ""
+              }
             </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label className="modal-label">Password</Form.Label>
@@ -73,7 +93,10 @@ function AddStudent({ showAddModal, setShowAddModal, handleAddClose, handleShow,
                 value={studentInput.password}
                 onChange={handleInput}
                 placeholder="********"
-                 />
+              />
+              {error ?
+                <p className="text-danger">Password can't be empty</p> : ""
+              }
             </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label className="modal-label">Confirm Password</Form.Label>
@@ -83,7 +106,11 @@ function AddStudent({ showAddModal, setShowAddModal, handleAddClose, handleShow,
                 value={studentInput.cpassword}
                 onChange={handleInput}
                 placeholder="********"
-                 />
+              />
+              {error ?
+                <p className="text-danger">Confirm password can't be empty</p> : ""
+              }
+              
             </Form.Group>
           </Form>
         </Modal.Body>
@@ -93,15 +120,14 @@ function AddStudent({ showAddModal, setShowAddModal, handleAddClose, handleShow,
           </Button>
           <Button
             variant=""
-            className="add-student-btn text-white" 
+            className="add-student-btn text-white"
             onClick={() => {
               handleAddClose();
               handleAddStudent();
-              setStudentInput("")
+              setStudentInput("");
             }}
-
           >
-            Add Student                                               
+            Add Student
           </Button>
         </Modal.Footer>
       </Modal>

@@ -9,10 +9,12 @@ import ViewStudent from "./components/Students/ViewStudent";
 
 const studentContext = createContext();
 const bookContext = createContext();
+const issueBookContext = createContext();
 
 function App() {
   const [studentData, setStudentData] = useState([]);
   const [bookData, setBookData] = useState([]);
+  const [issueBookData, setIssueBookData] = useState([]);
   console.log(bookData);
 
   const [auth, setAuth] = useState(false);
@@ -22,29 +24,31 @@ function App() {
 
   return (
     <div className="">
-      <bookContext.Provider value={[bookData, setBookData]}>
-        <studentContext.Provider value={[studentData, setStudentData]}>
-          <Router>
-            <Routes>
-              <Route
-                path="/"
-                exact
-                element={
-                  !auth ? (
-                    <LoginForm loginCheck={loginCheck} />
-                  ) : (
-                    <IssuedBooks />
-                  )
-                }
-              />
-              <Route path="/issuedbooks" element={<IssuedBooks />} />
-              <Route path="/allbooks" element={<AllBooks />} />
-              <Route path="/students" element={<Student />} />
-              <Route path="/view-student" element={<ViewStudent />} />
-            </Routes>
-          </Router>
-        </studentContext.Provider>
-      </bookContext.Provider>
+      <issueBookContext.Provider value={[issueBookData, setIssueBookData]}>
+        <bookContext.Provider value={[bookData, setBookData]}>
+          <studentContext.Provider value={[studentData, setStudentData]}>
+            <Router>
+              <Routes>
+                <Route
+                  path="/"
+                  exact
+                  element={
+                    !auth ? (
+                      <LoginForm loginCheck={loginCheck} />
+                    ) : (
+                      <IssuedBooks />
+                    )
+                  }
+                />
+                <Route path="/issuedbooks" element={<IssuedBooks />} />
+                <Route path="/allbooks" element={<AllBooks />} />
+                <Route path="/students" element={<Student />} />
+                <Route path="/view-student" element={<ViewStudent />} />
+              </Routes>
+            </Router>
+          </studentContext.Provider>
+        </bookContext.Provider>
+      </issueBookContext.Provider>
     </div>
   );
 }
@@ -52,3 +56,4 @@ function App() {
 export default App;
 export { studentContext };
 export { bookContext };
+export { issueBookContext };

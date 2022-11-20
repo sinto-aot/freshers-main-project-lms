@@ -20,23 +20,23 @@ function EditBook({
   bookRemaining,
   setBookRemaining,
 }) {
-  const handleEditBookTitle = (e) => {
+  const editBookTitle = (e) => {
     setBookTitle(e.target.value);
   };
 
-  const hadleEditBookAuthor = (e) => {
+  const editBookAuthor = (e) => {
     setBookAuthor(e.target.value);
   };
 
-  const handleEditBooklanguage = (e) => {
+  const editBookLanguage = (e) => {
     setBookLanguage(e.target.value);
   };
 
-  const handleEditBookTotalCopies = (e) => {
+  const editBookTotalCopies = (e) => {
     setBookTotalCopies(e.target.value);
   };
 
-  const handleEditBookRemaining = (e) => {
+  const editBookRemaining = (e) => {
     setBookRemaining(e.target.value);
   };
 
@@ -72,7 +72,7 @@ function EditBook({
                 type="text"
                 name="bookTitle"
                 value={bookTitle}
-                onChange={handleEditBookTitle}
+                onChange={editBookTitle}
                 placeholder="Eg: Pride and Prejudice"
                 autoFocus
                 required
@@ -84,7 +84,7 @@ function EditBook({
                 type="text"
                 name="author"
                 value={bookAuthor}
-                onChange={hadleEditBookAuthor}
+                onChange={editBookAuthor}
                 placeholder="Eg: Jane Austen"
                 required
               />
@@ -94,7 +94,7 @@ function EditBook({
               <Form.Select
                 name="language"
                 value={bookLanguage}
-                onChange={handleEditBooklanguage}
+                onChange={editBookLanguage}
               >
                 <option value="">Select Language</option>
                 <option>English</option>
@@ -112,7 +112,7 @@ function EditBook({
                   type="text"
                   name="totalCopies"
                   value={bookTotalCopies}
-                  onChange={handleEditBookTotalCopies}
+                  onChange={editBookTotalCopies}
                   placeholder="5"
                   required
                 />
@@ -126,7 +126,7 @@ function EditBook({
                   type="text"
                   name="remaining"
                   value={bookRemaining}
-                  onChange={handleEditBookRemaining}
+                  onChange={editBookRemaining}
                   placeholder="2"
                   required
                 />
