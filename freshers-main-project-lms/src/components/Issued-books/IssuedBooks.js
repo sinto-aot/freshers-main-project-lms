@@ -36,7 +36,7 @@ function IssuedBooks({ studentKey, studentName, setStudentName }) {
           <div className="search col-5">
             <Form.Control
               type="text"
-              placeholder="Search by student name or email "
+              placeholder="Search by book title or student"
               className=" mt-3 mx-4 "
             />
           </div>

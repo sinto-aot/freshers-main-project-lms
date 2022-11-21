@@ -156,7 +156,7 @@ function Student() {
                         <img
                           src="/img/delete-icon.png"
                           alt=""
-                          className="mx-1"
+                          className="mx-2"
                           onClick={() => {
                             deleteModalShow();
                             setStudentKey(item.key);

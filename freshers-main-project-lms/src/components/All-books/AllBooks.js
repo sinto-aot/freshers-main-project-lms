@@ -154,7 +154,7 @@ function AllBooks() {
                         <img
                           src="/img/delete-icon.png"
                           alt=""
-                          className="mx-1"
+                          className="mx-3"
 
                           onClick={() => {
                             deleteModalShow();

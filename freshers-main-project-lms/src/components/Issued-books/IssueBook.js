@@ -10,29 +10,6 @@ function IssueBook({ show, handleClose }) {
   const [studentData, setStudentData] = useContext(studentContext);
   const [bookData, setBookData] = useContext(bookContext);
 
-  // const [selectBook, setSelectBook] = useState("");
-  // const [selectStudent, setSelectStudent] = useState("");
-  // const [issueDate, setIssueDate] = useState("");
-  // const [dueDate, setDueDate] = useState("");
-  // const [bookId, setBookId] = useState("");
-  // const [studentId, setStudentId] = useState("");
-
-  // const handleSelectBook = (e) => {
-  //   setBookId(e.target.value);
-  // };
-
-  // const handleSelectStudent = (e) => {
-  //   setStudentId(e.target.value);
-  // };
-
-  // const handleIssueDate = (e) => {
-  //   setIssueDate(e.target.value);
-  // };
-
-  // const handleDueDate = (e) => {
-  //   setDueDate(e.target.value);
-  // };
-
   const [issuedBook, setIssuedBook] = useState({
     key: "",
     bookTitle: "",
