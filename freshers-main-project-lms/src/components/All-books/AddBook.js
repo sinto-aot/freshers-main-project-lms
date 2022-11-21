@@ -80,6 +80,8 @@ function AddBooks({
                 <option value="">Select Language</option>
                 <option>English</option>
                 <option>Malayalam</option>
+                <option>Spanish</option>
+                <option>Portuguese</option>
               </Form.Select>
             </Form.Group>
 

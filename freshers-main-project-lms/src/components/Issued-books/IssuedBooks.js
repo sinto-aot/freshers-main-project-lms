@@ -80,7 +80,6 @@ function IssuedBooks({ studentKey, studentName, setStudentName }) {
                 <div className="row">
                   {bookData.map((book) => {
                     if (book.key == item.bTitle) {
-                      // console.log("Hio");
                       return <div className="col">{book.bookTitle}</div>;
                     }
                   })}
