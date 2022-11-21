@@ -27,6 +27,7 @@ function Student() {
   const deleteModalShow = () => setShowDeleteModal(true);
 
   const [studentKey, setStudentKey] = useState("");
+  console.log(studentKey)
   const [studentName, setStudentName] = useState("");
   const [studentEmail, setStudentEmail] = useState("");
   const [studentPassword, setStudentPassword] = useState("");

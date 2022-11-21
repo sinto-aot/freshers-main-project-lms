@@ -4,21 +4,15 @@ import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import shortid from "shortid";
 import { studentContext } from "../../App";
-function AddStudent({
-  showAddModal,
-  handleAddClose,
-}) {
-
-  const [studentData, setStudentData] = useContext(studentContext)
-  const [error, setError] = useState(false) 
+function AddStudent({ showAddModal, handleAddClose }) {
+  const [studentData, setStudentData] = useContext(studentContext);
+  const [error, setError] = useState(false);
   const [studentInput, setStudentInput] = useState({
     name: "",
     email: "",
     password: "",
     cpassword: "",
   });
-
-  
 
   const handleInput = (e) => {
     let name = e.target.name;
@@ -27,27 +21,31 @@ function AddStudent({
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault()
-    
-  }
+    e.preventDefault();
+  };
 
   const handleAddStudent = () => {
-    if (studentInput.name.length === 0 || studentInput.email.length === 0 || studentInput.password.length === 0 || studentInput.cpassword.length === 0 && studentInput.password != studentInput.cpassword) {
-      setError(true)
-      
-    }else {
-      setStudentData([...studentData, {
-        key: shortid.generate(),
-        name: studentInput.name,
-        email: studentInput.email,
-        password: studentInput.password,
-        cpassword: studentInput.cpassword
-      }])
+    if (
+      studentInput.name.length == 0 ||
+      studentInput.email.length == 0 ||
+      studentInput.password.length == 0 ||
+      studentInput.cpassword.length == 0 &&
+      studentInput.password != studentInput.cpassword
+    ) {
+      setError(true);
+    } else {
+      setStudentData([
+        ...studentData,
+        {
+          key: shortid.generate(),
+          name: studentInput.name,
+          email: studentInput.email,
+          password: studentInput.password,
+          cpassword: studentInput.cpassword,
+        },
+      ]);
     }
-
-  }
-
-
+  };
 
   return (
     <>
@@ -68,9 +66,7 @@ function AddStudent({
                 autoFocus
                 required
               />
-              {error ?
-                <p className="text-danger">Name can't be empty</p> : ""
-              }
+              {error ? <p className="text-danger">The Name field is required</p> : ""}
             </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label className="modal-label">Email</Form.Label>
@@ -81,9 +77,7 @@ function AddStudent({
                 onChange={handleInput}
                 placeholder="Eg: johndoe@gmail.com"
               />
-              {error ?
-                <p className="text-danger">Email can't be empty</p> : ""
-              }
+              {error ? <p className="text-danger">The Email field is required</p> : ""}
             </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label className="modal-label">Password</Form.Label>
@@ -94,9 +88,11 @@ function AddStudent({
                 onChange={handleInput}
                 placeholder="********"
               />
-              {error ?
-                <p className="text-danger">Password can't be empty</p> : ""
-              }
+              {error ? (
+                <p className="text-danger">The Password field is required</p>
+              ) : (
+                ""
+              )}
             </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label className="modal-label">Confirm Password</Form.Label>
@@ -107,10 +103,11 @@ function AddStudent({
                 onChange={handleInput}
                 placeholder="********"
               />
-              {error ?
-                <p className="text-danger">Confirm password can't be empty</p> : ""
-              }
-              
+              {error ? (
+                <p className="text-danger">The Confirm Password is required</p>
+              ) : (
+                ""
+              )}
             </Form.Group>
           </Form>
         </Modal.Body>

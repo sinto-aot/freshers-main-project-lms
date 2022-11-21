@@ -5,19 +5,18 @@ import Form from "react-bootstrap/Form";
 import IssueBook from "./IssueBook";
 import { useState, useContext } from "react";
 import { studentContext, bookContext, issueBookContext } from "../../App";
+import AllBooks from "../All-books/AllBooks";
 
-function IssuedBooks({
-  studentKey,
-  studentName,
-  setStudentName
-}) {
-  const [issueBookData, setIssueBookData] = useContext(issueBookContext);
+function IssuedBooks({ studentKey, studentName, setStudentName }) {
+  const [issueData, setIssueBookData] = useContext(issueBookContext);
   const [studentData, setStudentData] = useContext(studentContext);
   const [bookData, setBookData] = useContext(bookContext);
 
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  const [issuedKey, setIssuedKey] = useState("");
 
   return (
     <div className="d-flex ">
@@ -75,45 +74,41 @@ function IssuedBooks({
             </div>
           </div>
 
-          
-          {issueBookData.map((item) => {
-                return (
-                  <div className="   border-bottom   py-4 mx-4">
-            <div className="row">
-            
+          {issueData.map((item) => {
+            return (
+              <div className="   border-bottom   py-4 mx-4" key={item.key}>
+                <div className="row">
+                  {bookData.map((book) => {
+                    if (book.key == item.bTitle) {
+                      // console.log("Hio");
+                      return <div className="col">{book.bookTitle}</div>;
+                    }
+                  })}
+                  {studentData.map((student) => {
+                    if (student.key == item.sName) {
+                      return <div className="col">{student.name}</div>;
+                    }
+                  })}
 
-              {bookData.map((item) => {
-                return (
-                  <div className="col"></div>
+                  <div className="col">{item.issueDate}</div>
+                  <div className="col">{item.dueDate}</div>
+                  <div className="col">{item.fine}</div>
 
-                )
-              })}
-
-              
-              {studentData.map((item) => {
-                return (
-                  <div className="col"></div>
-                );
-              })}
-              
-
-             
-              <div className="col"></div>
-              <div className="col"></div>
-              <div className="col"></div>
-
-              <div className="col ">
-                <div className="d-flex  actions px-2">
-                  <div>
-                    <img src="/img/issue-book-logo.png" alt="" className="" />
+                  <div className="col ">
+                    <div className="d-flex  actions px-2">
+                      <div>
+                        <img
+                          src="/img/issue-book-logo.png"
+                          alt=""
+                          className=""
+                        />
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          </div>  
-                );
-              })}
-          
+            );
+          })}
         </div>
       </div>
     </div>
