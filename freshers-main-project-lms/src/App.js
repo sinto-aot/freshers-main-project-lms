@@ -8,9 +8,10 @@ import Student from "./components/Students/Student";
 import ViewStudent from "./components/Students/ViewStudent";
 
 // Get data from localStorage
+// Student data get from localStorage
 const getStudentItems = () => {
   let studentList = localStorage.getItem('studentList');
-  console.log(studentList)
+  // console.log(studentList)
   if (studentList) {
     return JSON.parse(localStorage.getItem('studentList'));
   } else {
@@ -18,9 +19,10 @@ const getStudentItems = () => {
   }
 }
 
+// Book data get from localStorage
 const getBookItems = () => {
   let bookList = localStorage.getItem('bookList');
-  console.log(bookList)
+  // console.log(bookList)
   if (bookList) {
     return JSON.parse(localStorage.getItem('bookList'));
   } else {
@@ -28,9 +30,10 @@ const getBookItems = () => {
   }
 }
 
-const getIssuedtems = () => {
+// Issued book data get from localStorage
+const getIssuedItems = () => {
   let issuedList = localStorage.getItem('issuedList');
-  console.log(issuedList)
+  // console.log(issuedList)
   if (issuedList) {
     return JSON.parse(localStorage.getItem('issuedList'));
   } else {
@@ -38,7 +41,7 @@ const getIssuedtems = () => {
   }
 }
 
-
+// Context creation
 const studentContext = createContext();
 const bookContext = createContext();
 const issueBookContext = createContext();
@@ -46,12 +49,11 @@ const issueBookContext = createContext();
 function App() {
   const [studentData, setStudentData] = useState(getStudentItems());
   const [bookData, setBookData] = useState(getBookItems());
-  const [issueBookData, setIssueBookData] = useState(getIssuedtems());
-
-  console.log(bookData);
+  const [issueBookData, setIssueBookData] = useState(getIssuedItems());
+  // console.log(bookData);
   
 
-// Add data to localStorage
+// Set data to localStorage
   useEffect(() => {
     localStorage.setItem('studentList', JSON.stringify(studentData))
     localStorage.setItem('bookList', JSON.stringify(bookData))

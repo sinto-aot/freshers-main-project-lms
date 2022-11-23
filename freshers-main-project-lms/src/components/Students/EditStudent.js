@@ -30,6 +30,8 @@ function EditStudent({
     setStudentConPassword(e.target.value);
   };
 
+
+  // Edit student 
   const updateStudent = () => {
     setStudentData(
       studentData.map((student) => {

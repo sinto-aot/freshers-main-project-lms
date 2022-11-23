@@ -5,50 +5,58 @@ import Form from "react-bootstrap/Form";
 import IssueBook from "./IssueBook";
 import { useState, useContext } from "react";
 import { studentContext, bookContext, issueBookContext } from "../../App";
-import AllBooks from "../All-books/AllBooks";
-import ReturnModal from "./ReturnModal";
-import { Modal } from "react-bootstrap";
-
+// import AllBooks from "../All-books/AllBooks";
+// import ReturnModal from "./ReturnModal";
+import { Modal, Tooltip } from "react-bootstrap";
+import ReactTooltip from "react-tooltip";
 
 function IssuedBooks() {
   const [issueData, setIssueBookData] = useContext(issueBookContext);
   const [studentData, setStudentData] = useContext(studentContext);
   const [bookData, setBookData] = useContext(bookContext);
 
-  const [returnBookKey, setReturnBookKey] = useState("")
-  const [bookTitle, setBookTitle] = useState("")
+  const [returnBookKey, setReturnBookKey] = useState("");
+  const [bookTitleKey, setbookTitleKey] = useState("");
 
-
-
+  // Issue Book Modal
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  // Return Issue Book Modal
   const [showReturnModal, setshowReturnModal] = useState(false);
   const handleReturnClose = () => setshowReturnModal(false);
   const handleReturnShow = () => setshowReturnModal(true);
-  
-  
+
+  // Return book
   const returnBook = () => {
-    const bookIssue = issueData.map((item) => {
+
+    // Hide the returned book from issued books
+    const bookReturn = issueData.map((item) => {
+      
       if (item.key == returnBookKey) {
-        item.return = true
+        item.return = true;
       }
-      return item
-    })
-     const remCount = bookData.map((item) => {
-      if (item.key == bookTitle) {
-        item.remaining = item.remaining+1
+      return (item)
+    });
+
+    // Remaining count increase when the book is returned
+    const remCount = bookData.map((item) => {
+    //   issueData.map((item) => {
+      
+    //  })
+      
+      
+      if (item.key == bookTitleKey) {
+      console.log(item.key)
+      console.log(bookTitleKey)
+        item.remaining = ++item.remaining;
       }
-      return item
-    })
-    setIssueBookData(bookIssue)
-    setBookData(remCount)
-    
-  }
-
- 
-
+      return (item)
+    });
+    setIssueBookData(bookReturn);
+    setBookData(remCount);
+  };
 
   return (
     <div className="d-flex ">
@@ -103,8 +111,6 @@ function IssuedBooks() {
           className="issued-books-content mx-4 px-3"
           style={{ backgroundColor: "#FFF" }}
         >
-
-
           <div className="  student-list border-bottom list-header  mt-5 py-4 mx-4">
             <div className="row">
               <div className="col">Book Title</div>
@@ -119,70 +125,71 @@ function IssuedBooks() {
           </div>
 
           {issueData.map((item) => {
-            
-            if (item.return == false) { 
-            return (
-              <div className="border-bottom   py-4 mx-4" key={item.key}>
-                <div className="row">
 
-                  {bookData.map((book) => {
-                    if (book.key == item.bTitle) {
-                      return (
-                        <div className="col">{book.bookTitle}</div>
-                      );
-                    }
-                  })}
+            if (item.return == false) {
+              return (
+                <div className="border-bottom   py-4 mx-4" key={item.key}>
+                  <div className="row">
+                    {bookData.map((book) => {
+                      if (book.key == item.bTitle) {
+                        return <div className="col">{book.bookTitle}</div>;
+                      }
+                    })}
 
-                  {studentData.map((student) => {
-                    if (student.key == item.sName) {
-                      return (
-                        <div className="col">{student.name}</div>
-                      )
-                    }
-                  })}
+                    {studentData.map((student) => {
+                      if (student.key == item.sName) {
+                        return <div className="col">{student.name}</div>;
+                      }
+                    })}
 
-                  <div className="col">{item.issueDate}</div>
-                  <div className="col">{item.dueDate}</div>
-                  <div className="col">{item.fine}</div>
-                  <div className="col ">
-                    <div className="d-flex  actions px-2">
-                      <div>
-                        <img
-                          src="/img/issue-book-logo.png"
-                          alt=""
-                          className="icons"
-                          onClick={() => {
-                            handleReturnShow();
-                            setReturnBookKey(item.key)
-                            setBookTitle(item.bookTitle)
-                            
-                          }}
-                        />
+                    <div className="col">{item.issueDate}</div>
+                    <div className="col">{item.dueDate}</div>
+                    <div className="col">{item.fine}</div>
+                    <div className="col ">
+                      <div className="d-flex  actions px-2">
+                        <div>
+                          <img
+                            src="/img/issue-book-logo.png"
+                            alt=""
+                            className="icons"
+                            onClick={() => {
+                              handleReturnShow();
+                              setReturnBookKey(item.key);
+                              setbookTitleKey(item.bTitle);
+                            }}
+                          />
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            );
-          }
-            
+              );
+            }
           })}
         </div>
       </div>
+
       <Modal show={showReturnModal} onHide={handleReturnClose}>
         <Modal.Header closeButton>
           <Modal.Title>Mark as returned?</Modal.Title>
         </Modal.Header>
         <Modal.Body>Are you sure to mark this book as returned?</Modal.Body>
         <Modal.Footer>
-          <Button variant="" className='border px-5' onClick={handleReturnClose}>
+          <Button
+            variant=""
+            className="border px-5"
+            onClick={handleReturnClose}
+          >
             No
           </Button>
-                  <Button variant="" className='return-btn text-white px-5' onClick={() => {
-            handleReturnClose();
-            returnBook();
-                      
-                  }}>
+          <Button
+            variant=""
+            className="return-btn text-white px-5"
+            onClick={() => {
+              handleReturnClose();
+              returnBook();
+            }}
+          >
             Yes
           </Button>
         </Modal.Footer>

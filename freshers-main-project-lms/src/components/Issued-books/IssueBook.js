@@ -55,6 +55,7 @@ function IssueBook({ show, handleClose }) {
               <Form.Select
                 name="bookTitle"
                 onChange={issueInput}
+                autoFocus
               >
                 <option>Select Book</option>
                 {bookData.map((item) => {
@@ -81,7 +82,7 @@ function IssueBook({ show, handleClose }) {
                 name="issueDate"
                 onChange={issueInput}
                 placeholder="09-11-2022"
-                autoFocus
+                
               />
             </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
@@ -91,7 +92,7 @@ function IssueBook({ show, handleClose }) {
                 name="dueDate"
                 onChange={issueInput}
                 placeholder=""
-                autoFocus
+                
               />
             </Form.Group>
           </Form>
