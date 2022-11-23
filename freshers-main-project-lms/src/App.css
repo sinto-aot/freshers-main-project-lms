@@ -69,6 +69,10 @@ body {
   width: 9.063rem; */
 }
 
+.return-btn{
+  background-color: #ed7966;
+}
+
 .nav-brand {
   font-weight: 600;
   font-size: 20px;
@@ -107,5 +111,14 @@ body {
 }
 .side-btn :hover{
   background-color: #ef8979 !important;
+}
+
+.icons{
+  cursor: pointer;
+}
+
+input,button:focus{
+  outline: none;
+  box-shadow: none!important;
 }
 

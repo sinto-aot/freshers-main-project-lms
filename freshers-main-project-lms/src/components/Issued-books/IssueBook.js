@@ -34,7 +34,8 @@ function IssueBook({ show, handleClose }) {
         sName: issuedBook.name ,
         issueDate:issuedBook.issueDate ,
         dueDate:issuedBook.dueDate ,
-        fine:issuedBook.fine
+        fine: issuedBook.fine,
+        return:false
       },
     ]);
     console.log(issuedData)

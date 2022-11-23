@@ -4,9 +4,17 @@ import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import shortid from "shortid";
 import { studentContext } from "../../App";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+  
 function AddStudent({ showAddModal, handleAddClose }) {
+
   const [studentData, setStudentData] = useContext(studentContext);
+
+  // Error alert
   const [error, setError] = useState(false);
+
+  //Input values from forms
   const [studentInput, setStudentInput] = useState({
     name: "",
     email: "",
@@ -20,20 +28,34 @@ function AddStudent({ showAddModal, handleAddClose }) {
     setStudentInput({ ...studentInput, [name]: value });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  // };
+
+  //Add student
+  const handleAddStudent = () => {
+    validateStudent();
+    setStudentInput({
+      name: "",
+      email: "",
+      password: "",
+      cpassword: ""
+    });
   };
 
-  const handleAddStudent = () => {
+
+  const validateStudent = () => {
     if (
-      studentInput.name.length == 0 ||
-      studentInput.email.length == 0 ||
-      studentInput.password.length == 0 ||
-      studentInput.cpassword.length == 0 &&
+      !studentInput.name ||
+      !studentInput.email ||
+      !studentInput.password ||
+      !studentInput.cpassword ||
       studentInput.password != studentInput.cpassword
     ) {
-      setError(true);
-    } else {
+      setError(true)
+    }
+    else {
+      handleAddClose();
       setStudentData([
         ...studentData,
         {
@@ -45,7 +67,14 @@ function AddStudent({ showAddModal, handleAddClose }) {
         },
       ]);
     }
-  };
+  }
+    
+
+  const addStudentToast = () => {
+    toast.error("Please fill the form", {
+      position: "top-center"
+    });
+  }
 
   return (
     <>
@@ -54,7 +83,7 @@ function AddStudent({ showAddModal, handleAddClose }) {
           <Modal.Title className="modal-header">Add Student</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form className="needs-validation" onSubmit={handleSubmit}>
+          <Form className="needs-validation" >
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label className="modal-label">Name</Form.Label>
               <Form.Control
@@ -66,7 +95,8 @@ function AddStudent({ showAddModal, handleAddClose }) {
                 autoFocus
                 required
               />
-              {error ? <p className="text-danger">The Name field is required</p> : ""}
+              {error && !studentInput.name ?
+                (<p className="text-danger">The Name field is required</p>) : ("")}
             </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label className="modal-label">Email</Form.Label>
@@ -77,7 +107,9 @@ function AddStudent({ showAddModal, handleAddClose }) {
                 onChange={handleInput}
                 placeholder="Eg: johndoe@gmail.com"
               />
-              {error ? <p className="text-danger">The Email field is required</p> : ""}
+               {error && !studentInput.email ?
+                (<p className="text-danger">The Email field is required</p>) : ("")}
+              
             </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label className="modal-label">Password</Form.Label>
@@ -88,11 +120,8 @@ function AddStudent({ showAddModal, handleAddClose }) {
                 onChange={handleInput}
                 placeholder="********"
               />
-              {error ? (
-                <p className="text-danger">The Password field is required</p>
-              ) : (
-                ""
-              )}
+              {error && !studentInput.password ?
+                (<p className="text-danger">The Password field is required</p>) : ("")}
             </Form.Group>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label className="modal-label">Confirm Password</Form.Label>
@@ -103,11 +132,8 @@ function AddStudent({ showAddModal, handleAddClose }) {
                 onChange={handleInput}
                 placeholder="********"
               />
-              {error ? (
-                <p className="text-danger">The Confirm Password is required</p>
-              ) : (
-                ""
-              )}
+              {error && !studentInput.cpassword ?
+                (<p className="text-danger">The Confirm Password field is required</p>) : ("")}
             </Form.Group>
           </Form>
         </Modal.Body>
@@ -119,13 +145,13 @@ function AddStudent({ showAddModal, handleAddClose }) {
             variant=""
             className="add-student-btn text-white"
             onClick={() => {
-              handleAddClose();
+              addStudentToast();
               handleAddStudent();
-              setStudentInput("");
             }}
           >
             Add Student
           </Button>
+          <ToastContainer/>
         </Modal.Footer>
       </Modal>
     </>

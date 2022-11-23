@@ -1,6 +1,11 @@
 import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'
+
+
+
 
 function LoginForm({ loginCheck }) {
   const adminUser = {
@@ -32,6 +37,12 @@ function LoginForm({ loginCheck }) {
     setToggle(index);
   };
 
+  const loginToast = () => {
+    toast.success("Login Successfull", {
+      position: "top-center"
+    });
+  }
+
   return (
     <div className="container1">
       <div className="logo-container mt-5 ps-5">
@@ -48,8 +59,7 @@ function LoginForm({ loginCheck }) {
                 <div className={toggle === 1 ? "tabs active-tabs" : "tabs"}
           onClick={() => toggleTab(1)}>
                 Admin
-                </div>
-              
+                </div>              
             </a>
           </li>
           <li className="nav-item">
@@ -60,8 +70,7 @@ function LoginForm({ loginCheck }) {
                 </div>
             </a>
           </li>
-        </ul>
-       
+        </ul>       
         </div>
         <div className="login">
           
@@ -93,10 +102,11 @@ function LoginForm({ loginCheck }) {
               className="mb-3"
               controlId="formBasicCheckbox"
             ></Form.Group>
-            <Button variant="" className="login-btn text-white" type="submit">
+            <Button variant="" className="login-btn text-white" type="submit" onClick={loginToast}>
               Submit
             </Button>
-          </Form>
+            </Form>
+            <ToastContainer />
         </div>
         <div className={toggle === 2 ? "content  active-content" : "content"} id="student">
           {/* <h1>Student Login</h1> */}

@@ -13,21 +13,24 @@ function Student() {
   const [studentData, setStudentData] = useContext(studentContext);
   const [searchStudent, setSearchStudent] = useState("")
 
-
+  // Add modal
   const [showAddModal, setShowAddModal] = useState(false);
   const handleAddShow = () => setShowAddModal(true);
   const handleAddClose = () => setShowAddModal(false);
 
+  // Edit modal
   const [showEditModal, setShowEditModal] = useState(false);
   const handleEditShow = () => setShowEditModal(true);
   const handleEditClose = () => setShowEditModal(false);
 
+  // Delete modal
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const deleteModalClose = () => setShowDeleteModal(false);
   const deleteModalShow = () => setShowDeleteModal(true);
 
+
+  
   const [studentKey, setStudentKey] = useState("");
-  console.log(studentKey)
   const [studentName, setStudentName] = useState("");
   const [studentEmail, setStudentEmail] = useState("");
   const [studentPassword, setStudentPassword] = useState("");
@@ -141,14 +144,14 @@ function Student() {
                         <img
                           src="/img/edit-icon.png"
                           alt=""
-                          className=""
+                          className="icons"
                           onClick={() => {
                             handleEditShow();
                             setStudentKey(item.key);
                             setStudentName(item.name);
                             setStudentEmail(item.email);
                             setStudentPassword(item.password);
-                            setStudentConPassword(item.cPassword);
+                            setStudentConPassword(item.cpassword);
                           }}
                         />
                       </div>
@@ -156,7 +159,7 @@ function Student() {
                         <img
                           src="/img/delete-icon.png"
                           alt=""
-                          className="mx-2"
+                          className="mx-2 icons"
                           onClick={() => {
                             deleteModalShow();
                             setStudentKey(item.key);

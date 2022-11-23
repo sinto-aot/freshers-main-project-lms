@@ -26,7 +26,7 @@ function EditStudent({
   const editPassword = (e) => {
     setStudentPassword(e.target.value);
   };
-  const editConfPassword = (e) => {
+  const editConPassword = (e) => {
     setStudentConPassword(e.target.value);
   };
 
@@ -90,7 +90,7 @@ function EditStudent({
               <Form.Control
                 type="password"
                 value={studentConPassword}
-                onChange={editConfPassword}
+                onChange={editConPassword}
                 placeholder="********"
               />
             </Form.Group>

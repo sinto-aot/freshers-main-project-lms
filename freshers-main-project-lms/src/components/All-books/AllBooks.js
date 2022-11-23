@@ -138,7 +138,7 @@ function AllBooks() {
                         <img
                           src="/img/edit-icon.png"
                           alt=""
-                          className=""
+                          className="icons"
                           onClick={() => {
                             handleEditShow();
                             setBookKey(item.key);
@@ -154,7 +154,7 @@ function AllBooks() {
                         <img
                           src="/img/delete-icon.png"
                           alt=""
-                          className="mx-3"
+                          className="mx-3 icons"
 
                           onClick={() => {
                             deleteModalShow();

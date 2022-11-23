@@ -47,6 +47,7 @@ function App() {
   const [studentData, setStudentData] = useState(getStudentItems());
   const [bookData, setBookData] = useState(getBookItems());
   const [issueBookData, setIssueBookData] = useState(getIssuedtems());
+
   console.log(bookData);
   
 
@@ -59,11 +60,12 @@ function App() {
 
   
   
-  
+  // Login authentication
   const [auth, setAuth] = useState(false);
   const loginCheck = () => {
     setAuth(true);
   };
+
 
   return (
     <div className="">
