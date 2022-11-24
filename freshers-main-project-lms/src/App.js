@@ -90,7 +90,7 @@ function App() {
                 <Route path="/issuedbooks" element={<IssuedBooks />} />
                 <Route path="/allbooks" element={<AllBooks />} />
                 <Route path="/students" element={<Student />} />
-                <Route path="/view-student" element={<ViewStudent />} />
+                <Route path="/view-student/:id" element={<ViewStudent />} />
               </Routes>
             </Router>
           </studentContext.Provider>

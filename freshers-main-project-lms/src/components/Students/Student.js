@@ -166,7 +166,7 @@ function Student() {
                           }}
                         />
                       </div>
-                      <Link to="/view-student">
+                      <Link to={`/ViewStudent/${item.key}`}>
                         <div>
                           <img src="/img/view-icon.png" alt="" />
                         </div>

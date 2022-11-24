@@ -19,6 +19,21 @@ function IssueBook({ show, handleClose }) {
     fine: "10"
   });
 
+  // const issueBookTitle = (e) => {
+  //   let name = e.target.name;
+  //   let value = e.target.value;
+  //   setIssuedBook({ ...issuedBook,[name]:value})
+  // }
+
+  const [issuedTitle ,setIssuedTitle] = useState("")
+
+  const issueBookTitle = (e) => {
+    setIssuedTitle(e.target.value)
+    let name = e.target.name;
+    let value = e.target.value
+    setIssuedBook({ ...issuedBook, [name]: value });
+  };
+
   const issueInput = (e) => {
     let name = e.target.name;
     let value = e.target.value
@@ -38,9 +53,19 @@ function IssueBook({ show, handleClose }) {
         return:false
       },
     ]);
-    console.log(issuedData)
+    // console.log(issuedData)
     
   };
+
+  const remCount = () => {
+    setBookData(bookData.map((item) => {
+      if (item.key == issuedTitle) {
+        return{...item, remaining : item.remaining - 1}
+      }
+      return (item)
+    }))
+  }
+
 
   return (
     <>
@@ -54,7 +79,7 @@ function IssueBook({ show, handleClose }) {
               <Form.Label className="modal-label">Book</Form.Label>
               <Form.Select
                 name="bookTitle"
-                onChange={issueInput}
+                onChange={issueBookTitle}
                 autoFocus
               >
                 <option>Select Book</option>
@@ -107,6 +132,7 @@ function IssueBook({ show, handleClose }) {
             onClick={() => {
               handleClose();
               addIssuedBook();
+              remCount();
             }}
           >
             Add Book

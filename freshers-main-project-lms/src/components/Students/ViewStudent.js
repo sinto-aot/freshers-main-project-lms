@@ -4,8 +4,12 @@ import Form from "react-bootstrap/Form";
 import { useState } from "react";
 import { IoIosArrowBack } from "react-icons/io";
 import { Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 function ViewStudent() {
+
+  let {id} = useParams()
+
   const [studentData, setStudentData] = useState([
     {
       key: 1,

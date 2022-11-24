@@ -42,11 +42,6 @@ function IssuedBooks() {
 
     // Remaining count increase when the book is returned
     const remCount = bookData.map((item) => {
-    //   issueData.map((item) => {
-      
-    //  })
-      
-      
       if (item.key == bookTitleKey) {
       console.log(item.key)
       console.log(bookTitleKey)
