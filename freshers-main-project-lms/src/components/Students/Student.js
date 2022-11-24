@@ -8,6 +8,9 @@ import DeleteStudent from "./DeleteStudent";
 import { Link } from "react-router-dom";
 import { studentContext } from "../../App";
 import IssueBook from "../Issued-books/IssueBook";
+import { RiDeleteBin6Line } from "react-icons/ri"
+import { MdEdit } from "react-icons/md"
+import {AiOutlineEye} from "react-icons/ai"
 
 function Student() {
   const [studentData, setStudentData] = useContext(studentContext);
@@ -118,7 +121,7 @@ function Student() {
           className="student-content mx-4 px-3"
           style={{ backgroundColor: "#FFF" }}
         >
-          <div className="  student-list border-bottom list-header  mt-5 py-4 ">
+          <div className="  student-list border-bottom list-header mx-4 mt-5 py-4 ">
             <div className="row">
               <div className="col">Name</div>
               <div className="col">Email</div>
@@ -134,14 +137,24 @@ function Student() {
             }
           }).map((item) => {
             return (
-              <div className="border-bottom   py-4 " key={item.key}>
+              <div className="border-bottom  py-4 mx-4" key={item.key}>
                 <div className="row">
-                  <div className="col">{item.name}</div>
-                  <div className="col">{item.email}</div>
+                  <div className="col list-item">{item.name}</div>
+                  <div className="col list-item">{item.email}</div>
                   <div className="col ">
-                    <div className="d-flex  actions">
+                    <div className="d-flex  actions ">
                       <div>
-                        <img
+                        <MdEdit size={20} className="text-secondary"
+                           onClick={() => {
+                            handleEditShow();
+                            setStudentKey(item.key);
+                            setStudentName(item.name);
+                            setStudentEmail(item.email);
+                            setStudentPassword(item.password);
+                            setStudentConPassword(item.cpassword);
+                          }}
+                        />
+                        {/* <img
                           src="/img/edit-icon.png"
                           alt=""
                           className="icons"
@@ -153,10 +166,16 @@ function Student() {
                             setStudentPassword(item.password);
                             setStudentConPassword(item.cpassword);
                           }}
-                        />
+                        /> */}
                       </div>
                       <div>
-                        <img
+                        <RiDeleteBin6Line size={20} className="text-danger mx-2"
+                          onClick={() => {
+                            deleteModalShow();
+                            setStudentKey(item.key);
+                          }}
+                        />
+                        {/* <img
                           src="/img/delete-icon.png"
                           alt=""
                           className="mx-2 icons"
@@ -164,11 +183,14 @@ function Student() {
                             deleteModalShow();
                             setStudentKey(item.key);
                           }}
-                        />
+                        /> */}
                       </div>
-                      <Link to={`/ViewStudent/${item.key}`}>
+                      <Link to={`/view-student/${item.key}`}>
                         <div>
-                          <img src="/img/view-icon.png" alt="" />
+                          <AiOutlineEye className="text-secondary"
+                            size={25}
+                          />
+                          {/* <img src="/img/view-icon.png" alt="" /> */}
                         </div>
                       </Link>
                     </div>

@@ -9,6 +9,7 @@ import { studentContext, bookContext, issueBookContext } from "../../App";
 // import ReturnModal from "./ReturnModal";
 import { Modal, Tooltip } from "react-bootstrap";
 import ReactTooltip from "react-tooltip";
+import {MdOutlineAssignmentReturn} from "react-icons/md"
 
 function IssuedBooks() {
   const [issueData, setIssueBookData] = useContext(issueBookContext);
@@ -33,7 +34,6 @@ function IssuedBooks() {
 
     // Hide the returned book from issued books
     const bookReturn = issueData.map((item) => {
-      
       if (item.key == returnBookKey) {
         item.return = true;
       }
@@ -143,7 +143,14 @@ function IssuedBooks() {
                     <div className="col ">
                       <div className="d-flex  actions px-2">
                         <div>
-                          <img
+                          <MdOutlineAssignmentReturn size={25} className="text-secondary"
+                                 onClick={() => {
+                                  handleReturnShow();
+                                  setReturnBookKey(item.key);
+                                  setbookTitleKey(item.bTitle);
+                                }}
+                          />
+                          {/* <img
                             src="/img/issue-book-logo.png"
                             alt=""
                             className="icons"
@@ -152,7 +159,7 @@ function IssuedBooks() {
                               setReturnBookKey(item.key);
                               setbookTitleKey(item.bTitle);
                             }}
-                          />
+                          /> */}
                         </div>
                       </div>
                     </div>

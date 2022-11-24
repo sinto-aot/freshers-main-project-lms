@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
@@ -16,8 +16,12 @@ function IssueBook({ show, handleClose }) {
     name: "",
     issueDate: "",
     dueDate: "",
-    fine: "10"
+    fine: ""
   });
+
+  const [issuedTitle, setIssuedTitle] = useState("")
+  const [issuedDueDate, setIssuedDueDate] = useState("")
+  const [fineAmt,setFineAmt] = useState("")
 
   // const issueBookTitle = (e) => {
   //   let name = e.target.name;
@@ -25,7 +29,7 @@ function IssueBook({ show, handleClose }) {
   //   setIssuedBook({ ...issuedBook,[name]:value})
   // }
 
-  const [issuedTitle ,setIssuedTitle] = useState("")
+ 
 
   const issueBookTitle = (e) => {
     setIssuedTitle(e.target.value)
@@ -33,6 +37,13 @@ function IssueBook({ show, handleClose }) {
     let value = e.target.value
     setIssuedBook({ ...issuedBook, [name]: value });
   };
+
+  const issueDue = (e) => {
+    setIssuedDueDate(e.target.value)
+    let name = e.target.name;
+    let value = e.target.value;
+    setIssuedBook({ ...issuedBook, [name]: value });
+  } 
 
   const issueInput = (e) => {
     let name = e.target.name;
@@ -49,14 +60,15 @@ function IssueBook({ show, handleClose }) {
         sName: issuedBook.name ,
         issueDate:issuedBook.issueDate ,
         dueDate:issuedBook.dueDate ,
-        fine: issuedBook.fine,
+        fine: fineAmt,
         return:false
       },
     ]);
     // console.log(issuedData)
     
-  };
+  }
 
+  //Remaining count is decreased when the book is issued
   const remCount = () => {
     setBookData(bookData.map((item) => {
       if (item.key == issuedTitle) {
@@ -66,7 +78,21 @@ function IssueBook({ show, handleClose }) {
     }))
   }
 
+// Calculating the fine
+  
+  const bookFine = () => {
+    // console.log("check fine")
+    const currentDate = new Date();
+    const dueDate = issuedDueDate;
+    const diff = Math.round((currentDate.getTime() - new Date(dueDate)) / (1000 * 3600 * 24))
+    setFineAmt(Math.round(diff * 10))
+    if (fineAmt < 0) {
+      setFineAmt("-")
+    }
+  }
 
+  
+ 
   return (
     <>
       <Modal show={show} onHide={handleClose}>
@@ -115,7 +141,7 @@ function IssueBook({ show, handleClose }) {
               <Form.Control
                 type="date"
                 name="dueDate"
-                onChange={issueInput}
+                onChange={issueDue}
                 placeholder=""
                 
               />
@@ -133,6 +159,7 @@ function IssueBook({ show, handleClose }) {
               handleClose();
               addIssuedBook();
               remCount();
+              bookFine();
             }}
           >
             Add Book

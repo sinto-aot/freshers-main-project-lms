@@ -1,35 +1,37 @@
 import React from "react";
 import Navbar from "../Navbar";
 import Form from "react-bootstrap/Form";
-import { useState } from "react";
+import { useState, useContext, useEffect } from "react";
 import { IoIosArrowBack } from "react-icons/io";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
+import { studentContext, bookContext, issueBookContext } from "../../App";
 
 function ViewStudent() {
-
-  let {id} = useParams()
-
-  const [studentData, setStudentData] = useState([
-    {
-      key: 1,
-      bookTitle: "It Start With Us",
-      author: "Collen Hoover",
-      issueDate: "10-11-2022",
-      dueDate: "18-11-2022",
-      returnDate: "10-11-2022",
-      fine: 0,
-    },
-    {
-      key: 2,
-      bookTitle: "Pride and Prjudice",
-      author: "Jane Austin",
-      issueDate: "02-11-2022",
-      dueDate: "08-11-2022",
-      returnDate: "10-11-2022",
-      fine: 20,
-    },
-  ]);
+  let { id } = useParams();
+  const [issuedData, setIssuedData] = useContext(issueBookContext);
+  const [studentData, setStudentData] = useContext(studentContext);
+  const [bookData, setBookData] = useContext(bookContext);
+  // const [studentData, setStudentData] = useState([
+  //   {
+  //     key: 1,
+  //     bookTitle: "It Start With Us",
+  //     author: "Collen Hoover",
+  //     issueDate: "10-11-2022",
+  //     dueDate: "18-11-2022",
+  //     returnDate: "10-11-2022",
+  //     fine: 0,
+  //   },
+  //   {
+  //     key: 2,
+  //     bookTitle: "Pride and Prjudice",
+  //     author: "Jane Austin",
+  //     issueDate: "02-11-2022",
+  //     dueDate: "08-11-2022",
+  //     returnDate: "10-11-2022",
+  //     fine: 20,
+  //   },
+  // ]);
 
   return (
     <div className="d-flex ">
@@ -40,11 +42,19 @@ function ViewStudent() {
       >
         <nav className="navbar border-bottom mx-4">
           <div className="container-fluid">
-            <span className="navbar-brand mb-0 h1 mt-3 ">
-              <Link to="/students " className="text-dark">
-                <IoIosArrowBack />
-              </Link>{" "}
-              Students / Nitha Samuel
+            <span className="navbar-brand mb-0 h1 mt-3 d-flex">
+              <Link to="/students " className="text-dark d-flex " style={{textDecoration: 'none'}}>
+                <IoIosArrowBack className="mt-2" />
+              
+                <p className="view-student-head mt-2" >Students / </p>
+                </Link>{" "}
+              {studentData.map((item) => {
+                if (item.key == id) {
+                  return (
+                    <span className="view-student-name mt-2">{item.name}</span>
+                  );
+                }
+              })}
             </span>
           </div>
         </nav>
@@ -54,13 +64,28 @@ function ViewStudent() {
           style={{ backgroundColor: "#FFF" }}
         >
           <div className="student-title">
-            <p>Nitha Samuel</p>
-            <p>nithasamuel@gmail.com</p>
+            {studentData.map((item) => {
+              if (item.key == id) {
+                return <p className="std-name mt-3">{item.name}</p>;
+              }
+            })}
+
+            {studentData.map((item) => {
+              if (item.key == id) {
+                return <p className="std-email">{item.email}</p>;
+              }
+            })}
           </div>
-          <div className="student-book-details border-start ps-3">
-            <p>Total Books issued 5 </p>
-            <p>Returned Books 4 </p>
-            <p>Total Fine Rs. 70</p>
+          <div className="d-flex flex-column justify-space-around student-book-details border-start ps-4 mx-5  py-3">
+            <p className="book-details">
+              Total Books issued <span className="ms-5">5</span>{" "}
+            </p>
+            <p className="book-details">
+              Returned Books <span className="ms-5">4</span>{" "}
+            </p>
+            <p className="book-details">
+              Total Fine <span className="ms-5">Rs. 70</span>
+            </p>
           </div>
         </div>
 
@@ -68,7 +93,7 @@ function ViewStudent() {
           className="student-content mx-4 px-3 mt-3"
           style={{ backgroundColor: "#FFF" }}
         >
-          <div className="issued-count pt-3">Issued Books (5)</div>
+          <div className="std-issued-title pt-3">Issued Books (5)</div>
           <div className="col-12 d-flex justify-content-between mt-2">
             <div className="search col-5">
               <Form.Control
@@ -95,12 +120,12 @@ function ViewStudent() {
             return (
               <div className="border-bottom   py-4 " key={item.key}>
                 <div className="row">
-                  <div className="col">{item.bookTitle}</div>
-                  <div className="col">{item.author}</div>
-                  <div className="col">{item.issueDate}</div>
-                  <div className="col">{item.dueDate}</div>
-                  <div className="col">{item.returnDate}</div>
-                  <div className="col">{item.fine}</div>
+                  <div className="col"></div>
+                  <div className="col"></div>
+                  <div className="col"></div>
+                  <div className="col"></div>
+                  <div className="col"></div>
+                  <div className="col"></div>
                 </div>
               </div>
             );

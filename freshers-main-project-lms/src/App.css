@@ -59,7 +59,7 @@ body {
 
 .nav-container {
   width: 15.875rem;
-  height: 100vh;
+  height: 50rem;
   background-color: #ed7966;
 }
 
@@ -122,3 +122,54 @@ input,button:focus{
   box-shadow: none!important;
 }
 
+.list-item{
+  color: #09174A;
+}
+
+.view-student-head{
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  color: rgba(9, 23, 74, 0.54);
+  text-decoration: none;
+  
+}
+
+.view-student-name{
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  color: #09174A;
+}
+
+.std-name{
+  font-family: 'Montserrat';
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 22px;
+  color: #282829;
+}
+
+.std-email{
+  font-family: 'Montserrat';
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  color: #414141;
+}
+
+.book-details{
+  font-family: 'Montserrat';
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  color: #8B8B8B;
+}
+
+.std-issued-title{
+  font-family: 'Montserrat';
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 20px;
+  color: #282829;
+}

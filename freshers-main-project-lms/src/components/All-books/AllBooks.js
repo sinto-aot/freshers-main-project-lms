@@ -6,6 +6,9 @@ import { useState, useContext } from "react";
 import { bookContext } from "../../App";
 import DeleteBook from "./DeleteBook";
 import EditBook from "./EditBook";
+import { RiDeleteBin6Line } from "react-icons/ri"
+import { MdEdit } from "react-icons/md"
+
 
 function AllBooks() {
   const [bookData, setBookData] = useContext(bookContext);
@@ -127,15 +130,26 @@ function AllBooks() {
             return (
               <div className="   border-bottom   py-4 mx-4" key={item.key}>
                 <div className="row">
-                  <div className="col">{item.bookTitle}</div>
-                  <div className="col">{item.author}</div>
-                  <div className="col">{item.language}</div>
-                  <div className="col">{item.totalCopies}</div>
-                  <div className="col">{item.remaining}</div>
+                  <div className="col list-item">{item.bookTitle}</div>
+                  <div className="col list-item">{item.author}</div>
+                  <div className="col list-item">{item.language}</div>
+                  <div className="col list-item">{item.totalCopies}</div>
+                  <div className="col list-item">{item.remaining}</div>
                   <div className="col ">
                     <div className="d-flex  actions px-2">
                       <div>
-                        <img
+                        <MdEdit size={20} className="text-secondary"
+                             onClick={() => {
+                              handleEditShow();
+                              setBookKey(item.key);
+                              setBookTitle(item.bookTitle);
+                              setBookAuthor(item.author);
+                              setBookLanguage(item.language);
+                              setBookTotalCopies(item.totalCopies);
+                              setBookRemaining(item.remaining);
+                            }}
+                        />
+                        {/* <img
                           src="/img/edit-icon.png"
                           alt=""
                           className="icons"
@@ -148,10 +162,16 @@ function AllBooks() {
                             setBookTotalCopies(item.totalCopies);
                             setBookRemaining(item.remaining);
                           }}
-                        />
+                        /> */}
                       </div>
                       <div className="">
-                        <img
+                        <RiDeleteBin6Line size={20} className="text-danger mx-2"
+                            onClick={() => {
+                              deleteModalShow();
+                              setBookKey(item.key);
+                            }}
+                        />
+                        {/* <img
                           src="/img/delete-icon.png"
                           alt=""
                           className="mx-3 icons"
@@ -160,7 +180,7 @@ function AllBooks() {
                             deleteModalShow();
                             setBookKey(item.key);
                           }}
-                        />
+                        /> */}
                       </div>
                     </div>
                   </div>
