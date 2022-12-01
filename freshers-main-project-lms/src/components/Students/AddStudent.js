@@ -69,7 +69,7 @@ function AddStudent({ showAddModal, handleAddClose }) {
     }
   }
     
-
+  // Warning Toast
   const addStudentToast = () => {
     toast.error("Please fill the form", {
       position: "top-center"

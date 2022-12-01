@@ -123,7 +123,7 @@ function AllBooks() {
           {bookData.filter((value) => {
             if (searchBook == "") {
               return value
-            } else if (value.bookTitle.toLowerCase().includes(searchBook.toLowerCase())) {
+            } else if (value.bookTitle.toLowerCase().includes(searchBook.toLowerCase()) || value.author.toLowerCase().includes(searchBook.toLowerCase())  ) {
               return value
             }
           }).map((item) => {

@@ -6,12 +6,13 @@ import IssuedBooks from "./components/Issued-books/IssuedBooks";
 import LoginForm from "./components/LoginForm";
 import Student from "./components/Students/Student";
 import ViewStudent from "./components/Students/ViewStudent";
+import MyBooks from "./components/Student-dashboard/MyBooks";
+import StudentAllBooks from "./components/Student-dashboard/StudentAllBooks";
 
 // Get data from localStorage
 // Student data get from localStorage
 const getStudentItems = () => {
   let studentList = localStorage.getItem('studentList');
-  // console.log(studentList)
   if (studentList) {
     return JSON.parse(localStorage.getItem('studentList'));
   } else {
@@ -22,7 +23,6 @@ const getStudentItems = () => {
 // Book data get from localStorage
 const getBookItems = () => {
   let bookList = localStorage.getItem('bookList');
-  // console.log(bookList)
   if (bookList) {
     return JSON.parse(localStorage.getItem('bookList'));
   } else {
@@ -33,7 +33,6 @@ const getBookItems = () => {
 // Issued book data get from localStorage
 const getIssuedItems = () => {
   let issuedList = localStorage.getItem('issuedList');
-  // console.log(issuedList)
   if (issuedList) {
     return JSON.parse(localStorage.getItem('issuedList'));
   } else {
@@ -50,7 +49,6 @@ function App() {
   const [studentData, setStudentData] = useState(getStudentItems());
   const [bookData, setBookData] = useState(getBookItems());
   const [issueBookData, setIssueBookData] = useState(getIssuedItems());
-  // console.log(bookData);
   
 
 // Set data to localStorage
@@ -64,9 +62,17 @@ function App() {
   
   // Login authentication
   const [auth, setAuth] = useState(false);
+  const [studentAuth, setStudentAuth] = useState(false);
+
+  // Admin Authentication
   const loginCheck = () => {
     setAuth(true);
   };
+
+  // Student Authentication
+  const studentCheck = () => {
+    setStudentAuth(true)
+  }
 
 
   return (
@@ -76,21 +82,14 @@ function App() {
           <studentContext.Provider value={[studentData, setStudentData]}>
             <Router>
               <Routes>
-                <Route
-                  path="/"
-                  exact
-                  element={
-                    !auth ? (
-                      <LoginForm loginCheck={loginCheck} />
-                    ) : (
-                      <IssuedBooks />
-                    )
-                  }
-                />
+                <Route path="/" exact element={ !auth ? ( <LoginForm loginCheck={loginCheck} studentCheck = {studentCheck} /> ) : ( <IssuedBooks /> )  } />
+                <Route path="/my-books" element={!studentAuth ? (<LoginForm studentCheck={studentCheck} />) : (<MyBooks/>)} />
                 <Route path="/issuedbooks" element={<IssuedBooks />} />
                 <Route path="/allbooks" element={<AllBooks />} />
                 <Route path="/students" element={<Student />} />
                 <Route path="/view-student/:id" element={<ViewStudent />} />
+                
+                <Route path="/student-all-books" element={<StudentAllBooks/>}/>
               </Routes>
             </Router>
           </studentContext.Provider>

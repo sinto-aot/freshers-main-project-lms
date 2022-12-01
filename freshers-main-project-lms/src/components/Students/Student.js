@@ -31,8 +31,6 @@ function Student() {
   const deleteModalClose = () => setShowDeleteModal(false);
   const deleteModalShow = () => setShowDeleteModal(true);
 
-
-  
   const [studentKey, setStudentKey] = useState("");
   const [studentName, setStudentName] = useState("");
   const [studentEmail, setStudentEmail] = useState("");
@@ -132,7 +130,7 @@ function Student() {
           {studentData.filter((value) => {
             if (searchStudent == "") {
               return value
-            } else if (value.name.toLowerCase().includes(searchStudent.toLowerCase())) {
+            } else if (value.name.toLowerCase().includes(searchStudent.toLowerCase()) || value.email.toLowerCase().includes(searchStudent.toLowerCase())) {
               return value
             }
           }).map((item) => {

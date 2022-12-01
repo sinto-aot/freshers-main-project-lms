@@ -6,33 +6,46 @@ import { IoIosArrowBack } from "react-icons/io";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
 import { studentContext, bookContext, issueBookContext } from "../../App";
+import shortid from "shortid";
 
 function ViewStudent() {
   let { id } = useParams();
   const [issuedData, setIssuedData] = useContext(issueBookContext);
   const [studentData, setStudentData] = useContext(studentContext);
   const [bookData, setBookData] = useContext(bookContext);
-  // const [studentData, setStudentData] = useState([
-  //   {
-  //     key: 1,
-  //     bookTitle: "It Start With Us",
-  //     author: "Collen Hoover",
-  //     issueDate: "10-11-2022",
-  //     dueDate: "18-11-2022",
-  //     returnDate: "10-11-2022",
-  //     fine: 0,
-  //   },
-  //   {
-  //     key: 2,
-  //     bookTitle: "Pride and Prjudice",
-  //     author: "Jane Austin",
-  //     issueDate: "02-11-2022",
-  //     dueDate: "08-11-2022",
-  //     returnDate: "10-11-2022",
-  //     fine: 20,
-  //   },
-  // ]);
 
+
+  // const [studentDetails, setStudentDetails] = useState();
+  const studentDetails = issuedData.filter((item) => item.sName === id )
+
+  const studentDetailsTemp = studentDetails.map((item) => {
+    let stdData = {
+      key: item.key,
+      book: "",
+      author: "",
+      issueDate: item.issueDate,
+      dueDate: item.dueDate,
+      returnDate: item.returnDate,
+      fine:item.fineAmt
+    }
+
+    studentData.map((std) => {
+      if (std.key == item.sName) {
+        stdData.key = std.key;
+      }
+    });
+
+    bookData.map((book) => {
+      if (book.key == item.bTitle) {
+        stdData.book = book.bookTitle;
+        stdData.author = book.author;
+      }
+    })
+
+    return stdData;
+
+  })
+console.log(studentDetailsTemp)
   return (
     <div className="d-flex ">
       <Navbar />
@@ -98,7 +111,7 @@ function ViewStudent() {
             <div className="search col-5">
               <Form.Control
                 type="text"
-                placeholder="Search by student name or email "
+                placeholder="Search by student name or author "
                 className=" mt-3  "
               />
             </div>
@@ -116,19 +129,24 @@ function ViewStudent() {
             </div>
           </div>
 
-          {studentData.map((item) => {
-            return (
-              <div className="border-bottom   py-4 " key={item.key}>
-                <div className="row">
-                  <div className="col"></div>
-                  <div className="col"></div>
-                  <div className="col"></div>
-                  <div className="col"></div>
-                  <div className="col"></div>
-                  <div className="col"></div>
+          {studentDetailsTemp.map((item) => {
+            console.log("ee")
+            if (item.key === id) {
+              console.log("aa")
+              return (
+                <div className="border-bottom   py-4 " key={shortid.generate()} >
+                  <div className="row">
+                    <div className="col">{item.book}</div>
+                    <div className="col">{item.author}</div>
+                    <div className="col">{item.issueDate}</div>
+                    <div className="col">{item.dueDate}</div>
+                    <div className="col">{item.returnDate ? item.returnDate : "-"}</div>
+                    <div className="col">{item.fine}</div>
+                  </div>
                 </div>
-              </div>
-            );
+              );
+            }
+            
           })}
         </div>
       </div>

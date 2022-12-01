@@ -1,0 +1,56 @@
+*{
+    margin: 0;
+    box-sizing: border-box;
+    padding: 0;
+}
+  
+body {
+    font-family: "Lato";
+    padding: 0;
+}
+
+.nav-container {
+    width: 15.875rem;
+    height: 150vh;
+    background-color: #ed7966;
+}
+
+.nav-brand {
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 24px;
+    color: #09174a;
+}
+
+.list-header {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+    color: #646464;
+}  
+
+.side-btn{
+    background-color: #ed7966;
+    border: none;
+    outline: none;
+    box-shadow: none !important;
+    width: 10rem;
+    height: 2.75rem;
+}
+  
+.side-btn :hover{
+    background-color: #ef8979 !important;
+}
+  
+.icons{
+    cursor: pointer;
+}
+  
+input,button:focus{
+    outline: none;
+    box-shadow: none!important;
+}
+
+.list-item{
+    color: #09174A;
+}

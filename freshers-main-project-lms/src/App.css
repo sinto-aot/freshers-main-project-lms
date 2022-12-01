@@ -13,11 +13,12 @@ body {
   width: 406px;
 }
 
-.login-btn ,.delete-btn {
+.login-btn,
+.delete-btn {
   background-color: #ed7966;
 }
 
-.login-head{
+.login-head {
   width: 25rem;
 }
 
@@ -48,6 +49,7 @@ body {
   line-height: 29px;
   color: #ed7966;
 }
+
 .lms-txt-white {
   font-family: "Lato";
   font-style: normal;
@@ -59,17 +61,47 @@ body {
 
 .nav-container {
   width: 15.875rem;
-  height: 50rem;
+  height: 100vh;
   background-color: #ed7966;
+}
+
+.std-sidebar {
+  width: 15.875rem;
+  height: 100vh;
+  background-color: #303179;
+}
+
+.side-btn {
+  background-color: #ed7966;
+  border: none;
+  outline: none;
+  box-shadow: none !important;
+  width: 10rem;
+  height: 2.75rem;
+}
+
+.std-side-btn {
+  background-color: #303179;
+  border: none;
+  outline: none;
+  box-shadow: none !important;
+  width: 10rem;
+  height: 2.75rem;
+}
+
+.side-btn :hover {
+  background-color: #ef8979 !important;
+}
+
+.std-side-btn :hover {
+  background-color: #494a89 !important;
 }
 
 .add-student-btn {
   background-color: #ed7966;
-  /* border: none;
-  width: 9.063rem; */
 }
 
-.return-btn{
+.return-btn {
   background-color: #ed7966;
 }
 
@@ -101,75 +133,107 @@ body {
   color: #09174a;
 }
 
-.side-btn{
-  background-color: #ed7966;
-  border: none;
-  outline: none;
-  box-shadow: none !important;
-  width: 10rem;
-  height: 2.75rem;
-}
-.side-btn :hover{
-  background-color: #ef8979 !important;
-}
-
-.icons{
+.icons {
   cursor: pointer;
 }
 
-input,button:focus{
+input,
+button:focus {
   outline: none;
-  box-shadow: none!important;
+  box-shadow: none !important;
 }
 
-.list-item{
-  color: #09174A;
+.list-item {
+  color: #09174a;
 }
 
-.view-student-head{
+.view-student-head {
   font-weight: 500;
   font-size: 14px;
   line-height: 17px;
   color: rgba(9, 23, 74, 0.54);
   text-decoration: none;
-  
 }
 
-.view-student-name{
+.view-student-name {
   font-weight: 500;
   font-size: 14px;
   line-height: 17px;
-  color: #09174A;
+  color: #09174a;
 }
 
-.std-name{
-  font-family: 'Montserrat';
+.std-name {
+  font-family: "Montserrat";
   font-weight: 600;
   font-size: 18px;
   line-height: 22px;
   color: #282829;
 }
 
-.std-email{
-  font-family: 'Montserrat';
+.std-email {
+  font-family: "Montserrat";
   font-weight: 500;
   font-size: 16px;
   line-height: 20px;
   color: #414141;
 }
 
-.book-details{
-  font-family: 'Montserrat';
+.book-details {
+  font-family: "Montserrat";
   font-weight: 500;
   font-size: 14px;
   line-height: 17px;
-  color: #8B8B8B;
+  color: #8b8b8b;
 }
 
-.std-issued-title{
-  font-family: 'Montserrat';
+.std-issued-title {
+  font-family: "Montserrat";
   font-weight: 600;
   font-size: 16px;
   line-height: 20px;
   color: #282829;
+}
+
+.sort-txt {
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 16px;
+  color: #282829;
+}
+
+.select-box {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  color: #282829;
+}
+
+.login-label {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 19px;
+  color: #09174a;
+}
+
+.nav-link {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  color: #09174a;
+}
+
+#reg-txt {
+  font-family: "Lato";
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 19px;
+  color: #646464;
+}
+
+#reg-link {
+  font-family: "Lato";
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 19px;
+  color: #ed7966;
 }

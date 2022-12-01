@@ -42,7 +42,6 @@ function LoginForm({ loginCheck }) {
   };
 
 
-
   const loginAction = (e) => {
     e.preventDefault();
     checkUser();
@@ -132,7 +131,7 @@ function LoginForm({ loginCheck }) {
                 variant=""
                 className="login-btn text-white"
                 type="submit"
-                // onClick={loginToast}
+                onClick={loginToast}
               >
                 Submit
               </Button>
