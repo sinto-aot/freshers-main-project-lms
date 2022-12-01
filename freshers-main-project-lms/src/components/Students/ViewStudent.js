@@ -13,7 +13,7 @@ function ViewStudent() {
   const [issuedData, setIssuedData] = useContext(issueBookContext);
   const [studentData, setStudentData] = useContext(studentContext);
   const [bookData, setBookData] = useContext(bookContext);
-
+  const [searchBook, setSearchBook] = useState("")
 
   // const [studentDetails, setStudentDetails] = useState();
   const studentDetails = issuedData.filter((item) => item.sName === id )
@@ -113,6 +113,9 @@ console.log(studentDetailsTemp)
                 type="text"
                 placeholder="Search by student name or author "
                 className=" mt-3  "
+                onChange={(e) => {
+                  setSearchBook(e.target.value)
+                }}
               />
             </div>
           </div>
@@ -129,7 +132,13 @@ console.log(studentDetailsTemp)
             </div>
           </div>
 
-          {studentDetailsTemp.map((item) => {
+          {studentDetailsTemp.filter((value) => {
+            if (searchBook == "") {
+              return value
+            } else if (value.book.toLowerCase().includes(searchBook.toLowerCase()) || value.author.toLowerCase().includes(searchBook.toLowerCase())) {
+              return value
+            }
+          }).map((item) => {
             console.log("ee")
             if (item.key === id) {
               console.log("aa")

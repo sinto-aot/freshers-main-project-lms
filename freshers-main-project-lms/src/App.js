@@ -74,7 +74,6 @@ function App() {
     setStudentAuth(true)
   }
 
-
   return (
     <div className="">
       <issueBookContext.Provider value={[issueBookData, setIssueBookData]}>
@@ -82,8 +81,8 @@ function App() {
           <studentContext.Provider value={[studentData, setStudentData]}>
             <Router>
               <Routes>
-                <Route path="/" exact element={ !auth ? ( <LoginForm loginCheck={loginCheck} studentCheck = {studentCheck} /> ) : ( <IssuedBooks /> )  } />
-                <Route path="/my-books" element={!studentAuth ? (<LoginForm studentCheck={studentCheck} />) : (<MyBooks/>)} />
+                <Route path="/" element={ !auth ? ( <LoginForm loginCheck={loginCheck} studentCheck = {studentCheck} /> ) : ( <IssuedBooks /> )} />
+                <Route path="/my-books" element={!studentAuth ? (<LoginForm  />) : (<MyBooks/>)} />
                 <Route path="/issuedbooks" element={<IssuedBooks />} />
                 <Route path="/allbooks" element={<AllBooks />} />
                 <Route path="/students" element={<Student />} />

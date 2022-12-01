@@ -14,6 +14,7 @@ import {AiOutlineEye} from "react-icons/ai"
 
 function Student() {
   const [studentData, setStudentData] = useContext(studentContext);
+  // Search Student
   const [searchStudent, setSearchStudent] = useState("")
 
   // Add modal

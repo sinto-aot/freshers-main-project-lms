@@ -6,53 +6,66 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { studentContext } from "../App";
 
-function LoginForm({ loginCheck }) {
-  const [studentData, setStudentData] = useContext(studentContext);
-  const [loginToggle, setLoginToggle] = useState(false);
-
-  const [user, setUser] = useState({ email: "", password: "" });
-  const [student, setStudent] = useState({ email: "", password: "" });
-  const [studentEmail, setStudentEmail] = useState("");
-  const [studentPass, setStudentPass] = useState("");
-
-  const navigate = useNavigate();
-
+function LoginForm({ loginCheck, studentAuth }) {
   const adminUser = {
     email: "admin@admin.com",
     password: "admin123",
   };
 
-  const inputUser = (e) => {
+  const [studentData, setStudentData] = useContext(studentContext);
+
+  const navigate = useNavigate();
+  const [loginToggle, setLoginToggle] = useState(false);
+
+  const [user, setUser] = useState({ email: "", password: "" });
+  const [student, setStudent] = useState({ email: "", password: "" });
+  
+  const adminInput = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
   };
 
-  const studentLogin = (e) => {
+  const studentInput = (e) => {
     setStudent({ ...student, [e.target.name]: e.target.value });
   }
 
 
   const checkUser = () => {
-    if (user.email == adminUser.email && user.password == adminUser.password) {
-      console.log("Logged in");
+    if (
+      user.email == adminUser.email &&
+      user.password == adminUser.password
+    ) {
       loginCheck();
+      console.log("Logged in");
+      
     } else {
-      toast.error("Incorrect Email or password")
+      toast.error("Incorrect Email or password", { position:"top-center" })
       console.log("Incorrect email or password")
     }
   };
 
-
+  const checkStudent = () => {
+    studentData.find((item) => {
+      if (item.email == student.email && item.password == student.password) {
+        studentAuth()
+        console.log("success")
+      }
+      else {
+        toast.error("Incorrect Email or password", {position:"top-center" })
+      }
+    })
+  }
 
   const loginAction = (e) => {
     e.preventDefault();
     checkUser();
+    navigate("/")
   };
 
-  const loginToast = () => {
-    toast.success("Login Successfull", {
-      position: "top-center",
-    });
-  };
+  const stdLoginAction = (e) => {
+    e.preventDefault();
+    checkStudent();
+    navigate("/my-books")
+  }
 
   const adminTab = () => {
     setLoginToggle(false);
@@ -103,7 +116,7 @@ function LoginForm({ loginCheck }) {
           <div id="admin">
             <Form
               className="login-form align-items-center mt-2 "
-              onSubmit={loginAction}
+              // onSubmit={loginAction}
             >
               <Form.Group className="mb-3 mt-3" controlId="formBasicEmail">
                 <Form.Label className="login-label">Email</Form.Label>
@@ -112,7 +125,9 @@ function LoginForm({ loginCheck }) {
                   placeholder="Enter your email"
                   style={{ color: "#A3A3A3" }}
                   name="email"
-                  onChange={inputUser}
+                  
+
+                  onChange={loginToggle ? studentInput :  adminInput}
                 />
               </Form.Group>
               <Form.Group className="mb-3" controlId="formBasicPassword">
@@ -121,7 +136,8 @@ function LoginForm({ loginCheck }) {
                   type="password"
                   placeholder="Enter your password"
                   name="password"
-                  onChange={inputUser}
+                  
+                  onChange={loginToggle ? studentInput :  adminInput} 
                 />
               </Form.Group>
               <Form.Group
@@ -132,9 +148,9 @@ function LoginForm({ loginCheck }) {
                 variant=""
                 className="login-btn text-white"
                 type="submit"
-                // onClick={loginToast}
+                onClick={loginToggle ? stdLoginAction : loginAction}
               >
-                Submit
+                Login
               </Button>
               {loginToggle && (
                 <div className="signup-txt d-flex justify-content-center mt-3">

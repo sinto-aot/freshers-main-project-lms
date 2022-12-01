@@ -19,6 +19,9 @@ function IssuedBooks() {
   const [returnBookKey, setReturnBookKey] = useState("");
   const [bookTitleKey, setbookTitleKey] = useState("");
 
+  // Search Issued Book
+  const [searchIssuedBook, setSearchIssuedBook] = useState("");
+
   // Issue Book Modal
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -73,6 +76,9 @@ function IssuedBooks() {
               type="text"
               placeholder="Search by book title or student"
               className=" mt-3 mx-4 "
+              onChange={(e) => {
+                setSearchIssuedBook(e.target.value)
+              }}
             />
           </div>
           <div className="add-student col-5 mt-3 d-flex justify-content-end ">
@@ -92,16 +98,7 @@ function IssuedBooks() {
           handleClose={handleClose}
           handleShow={handleShow}
         />
-        {/* <ReturnModal
-          showReturnModal={showReturnModal}
-          setshowReturnModal={setshowReturnModal}
-          handleReturnShow={handleReturnShow}
-          handleReturnClose={handleReturnClose}
-          issuedKey={issuedKey}
-          isReturned={isReturned}
-          setIsReturned={setIsReturned}
-          returnBookKey={returnBookKey}
-        /> */}
+     
         <div
           className="issued-books-content mx-4 px-3"
           style={{ backgroundColor: "#FFF" }}
@@ -119,7 +116,13 @@ function IssuedBooks() {
             </div>
           </div>
 
-          {issueData.map((item) => {
+          {issueData.filter((value) => {
+            if (searchIssuedBook == "") {
+              return value
+            }else if (value.bTitle.toLowerCase().includes(searchIssuedBook.toLowerCase()) || value.sName.toLowerCase().includes(searchIssuedBook.toLowerCase())) {
+               return value
+              }
+          }).map((item) => {
 
             if (item.return == false) {
               return (
@@ -150,16 +153,7 @@ function IssuedBooks() {
                                   setbookTitleKey(item.bTitle);
                                 }}
                           />
-                          {/* <img
-                            src="/img/issue-book-logo.png"
-                            alt=""
-                            className="icons"
-                            onClick={() => {
-                              handleReturnShow();
-                              setReturnBookKey(item.key);
-                              setbookTitleKey(item.bTitle);
-                            }}
-                          /> */}
+                         
                         </div>
                       </div>
                     </div>
