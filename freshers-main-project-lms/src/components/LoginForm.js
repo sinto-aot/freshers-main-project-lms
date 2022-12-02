@@ -6,7 +6,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { studentContext } from "../App";
 
-function LoginForm({ loginCheck, studentAuth }) {
+function LoginForm({ }) {
   const adminUser = {
     email: "admin@admin.com",
     password: "admin123",
@@ -16,40 +16,50 @@ function LoginForm({ loginCheck, studentAuth }) {
 
   const navigate = useNavigate();
   const [loginToggle, setLoginToggle] = useState(false);
+  const [user, setUser] = useState({ email: "", password: ""})
+  // const [user, setUser] = useState({ email: "", password: "" });
+  // const [student, setStudent] = useState({ email: "", password: "" });
+  const [error, setError] = useState(false)
 
-  const [user, setUser] = useState({ email: "", password: "" });
-  const [student, setStudent] = useState({ email: "", password: "" });
-  
-  const adminInput = (e) => {
-    setUser({ ...user, [e.target.name]: e.target.value });
-  };
+  // const adminInput = (e) => {
+  //   setUser({ ...user, [e.target.name]: e.target.value });
+  // };
 
-  const studentInput = (e) => {
-    setStudent({ ...student, [e.target.name]: e.target.value });
+  // const studentInput = (e) => {
+  //   setStudent({ ...student, [e.target.name]: e.target.value });
+  // }
+
+  const userInput = (e) => {
+    
   }
 
-
-  const checkUser = () => {
-    if (
-      user.email == adminUser.email &&
-      user.password == adminUser.password
-    ) {
-      loginCheck();
+  const adminLogin = () => {
+    if (user.email == adminUser.email &&
+      user.password == adminUser.password ) {
+      navigate("/issuedbooks")
       console.log("Logged in");
+      toast.success("Login successfully" ,{position:"top-center"})
       
     } else {
-      toast.error("Incorrect Email or password", { position:"top-center" })
+      setError(true)
+      toast.error("Incorrect email or password", { position:"top-center" })
       console.log("Incorrect email or password")
     }
   };
 
-  const checkStudent = () => {
+  const studentLogin = () => {
+    // console.log("func check")
     studentData.find((item) => {
-      if (item.email == student.email && item.password == student.password) {
-        studentAuth()
-        console.log("success")
+      // console.log("find check")
+      console.log(item.email)
+      console.log(user.email)
+      if (item.email == user.email && item.password == user.password) {
+        navigate("/my-books")
+        console.log("student login successfull")
+        toast.success("Login successfully" ,{position:"top-center"})
       }
       else {
+        console.log("incorrect email or password")
         toast.error("Incorrect Email or password", {position:"top-center" })
       }
     })
@@ -57,15 +67,20 @@ function LoginForm({ loginCheck, studentAuth }) {
 
   const loginAction = (e) => {
     e.preventDefault();
-    checkUser();
-    navigate("/")
+    if (!loginToggle) {
+      adminLogin()
+    } else if (loginToggle) {
+      studentLoginAction()
+    }
+    else {
+      setError(true)
+    }
   };
 
-  const stdLoginAction = (e) => {
-    e.preventDefault();
-    checkStudent();
-    navigate("/my-books")
+  const studentLoginAction = () => {
+    studentLogin()
   }
+
 
   const adminTab = () => {
     setLoginToggle(false);
@@ -116,7 +131,7 @@ function LoginForm({ loginCheck, studentAuth }) {
           <div id="admin">
             <Form
               className="login-form align-items-center mt-2 "
-              // onSubmit={loginAction}
+              onSubmit={loginAction}
             >
               <Form.Group className="mb-3 mt-3" controlId="formBasicEmail">
                 <Form.Label className="login-label">Email</Form.Label>
@@ -125,9 +140,9 @@ function LoginForm({ loginCheck, studentAuth }) {
                   placeholder="Enter your email"
                   style={{ color: "#A3A3A3" }}
                   name="email"
-                  
-
-                  onChange={loginToggle ? studentInput :  adminInput}
+                  value={user.email}
+                  onChange={(e) => setUser({...user, email: e.target.value})} 
+                  // onChange={loginToggle ? studentInput :  adminInput}
                 />
               </Form.Group>
               <Form.Group className="mb-3" controlId="formBasicPassword">
@@ -136,8 +151,9 @@ function LoginForm({ loginCheck, studentAuth }) {
                   type="password"
                   placeholder="Enter your password"
                   name="password"
-                  
-                  onChange={loginToggle ? studentInput :  adminInput} 
+                  value={user.password}
+                  onChange={(e)=>setUser({...user, password:e.target.value})}
+                  // onChange={loginToggle ? studentInput :  adminInput} 
                 />
               </Form.Group>
               <Form.Group
@@ -148,7 +164,7 @@ function LoginForm({ loginCheck, studentAuth }) {
                 variant=""
                 className="login-btn text-white"
                 type="submit"
-                onClick={loginToggle ? stdLoginAction : loginAction}
+                // onClick={loginToggle ? stdLoginAction : loginAction}
               >
                 Login
               </Button>

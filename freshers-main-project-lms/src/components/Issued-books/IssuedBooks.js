@@ -56,6 +56,16 @@ function IssuedBooks() {
     setBookData(remCount);
   };
 
+  const issuedTempData = issueData.map((issued) => {
+    if (issued.return == false) {
+      let tempIssue = {
+        key: issued.key,
+        
+      }
+    }
+  })
+
+
   return (
     <div className="d-flex ">
       <Navbar />

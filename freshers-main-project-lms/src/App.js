@@ -61,18 +61,18 @@ function App() {
   
   
   // Login authentication
-  const [auth, setAuth] = useState(false);
-  const [studentAuth, setStudentAuth] = useState(false);
+  // const [auth, setAuth] = useState(false);
+  // const [studentAuth, setStudentAuth] = useState(false);
 
   // Admin Authentication
-  const loginCheck = () => {
-    setAuth(true);
-  };
+  // const loginCheck = () => {
+  //   setAuth(true);
+  // };
 
-  // Student Authentication
-  const studentCheck = () => {
-    setStudentAuth(true)
-  }
+  // // Student Authentication
+  // const studentCheck = () => {
+  //   setStudentAuth(true)
+  // }
 
   return (
     <div className="">
@@ -81,13 +81,14 @@ function App() {
           <studentContext.Provider value={[studentData, setStudentData]}>
             <Router>
               <Routes>
-                <Route path="/" element={ !auth ? ( <LoginForm loginCheck={loginCheck} studentCheck = {studentCheck} /> ) : ( <IssuedBooks /> )} />
-                <Route path="/my-books" element={!studentAuth ? (<LoginForm  />) : (<MyBooks/>)} />
+                <Route path="/" element={<LoginForm/>} />
+                {/* <Route path="/" element={ !auth ? ( <LoginForm loginCheck={loginCheck} studentCheck = {studentCheck} /> ) : ( <IssuedBooks /> )} /> */}
+                {/* <Route path="/my-books" element={!studentAuth ? (<LoginForm />) : (<MyBooks />)} /> */}
                 <Route path="/issuedbooks" element={<IssuedBooks />} />
+                <Route path="/my-books" element={<MyBooks/>} />
                 <Route path="/allbooks" element={<AllBooks />} />
                 <Route path="/students" element={<Student />} />
                 <Route path="/view-student/:id" element={<ViewStudent />} />
-                
                 <Route path="/student-all-books" element={<StudentAllBooks/>}/>
               </Routes>
             </Router>
